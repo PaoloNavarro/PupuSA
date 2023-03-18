@@ -1,0 +1,56 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.container-content {
+    margin: auto;
+    margin-top: 25px;
+}
+
+.form {
+    display: grid;
+    max-height: 400px;
+    margin-top: 15px;
+}
+
+.cont-button {
+   display: flex;
+   max-width: 350px;
+   margin: 15px auto;
+}
+
+.cont-button input {
+    margin: 5px;
+}
+
+.welcome-text {
+    display: block;
+    text-align: center;
+    background-color: #ffc107;
+    color: white;
+    border-radius: 15px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    background-color: #ffc107;
+    margin: 15px;
+    border-radius: 25px;
+    
+}
+
+.btn {
+    border-radius: 10px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(4, 84, 189);
+    transition: background-color .6s ease;
+}
+
+
+.btn-info:hover{
+    background-color: #01afd2;
+    transition: background-color .6s ease;
+}

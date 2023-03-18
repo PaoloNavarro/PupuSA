@@ -1,0 +1,37 @@
+section {
+    display: flex;
+    width: 100%;
+    height: 430px;
+}
+
+section img {
+    width: 0;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: 0.5s ease;
+}
+
+section img:hover{
+    width: 400px;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+
+
+
+@media only screen and (max-width:600px){
+    .container {
+        width: 400px;
+    }
+
+    section {
+        width: 100%;
+        height: 300px;
+    }
+
+    section img:hover {
+        width: 150px;
+    }
+}
