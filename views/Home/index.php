@@ -7,11 +7,11 @@
 <body>
     <div class="container">
     <section>
-        <img src="/MyFood/public/img/pupusa.jpg"  alt="...">
-        <img src="/MyFood/public/img/pupusa.jpg"  alt="...">
-        <img src="/MyFood/public/img/pupusa.jpg"  alt="...">
-        <img src="/MyFood/public/img/pupusa.jpg"  alt="...">
-        <img src="/MyFood/public/img/pupusa.jpg"  alt="...">
+        <img src="<?= URL . "public/img/pupusa.jpg" ?>"  alt="...">
+        <img src="<?= URL . "public/img/pupusa.jpg" ?>"  alt="...">
+        <img src="<?= URL . "public/img/pupusa.jpg" ?>"  alt="...">
+        <img src="<?= URL . "public/img/pupusa.jpg" ?>"  alt="...">
+        <img src="<?= URL . "public/img/pupusa.jpg" ?>"  alt="...">
     </section>
     </div>
     
