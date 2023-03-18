@@ -28,7 +28,7 @@
 
 <nav class="navbar navbar-expand-lg bg-light mb-3 navbar-fixed">
     <div class="container">
-    <a class="navbar-brand" href="./">Administrador</a>
+    <a class="navbar-brand" href="./">Administradores</a>
 
     <div class="collapse navbar-collapse" id="navbarAdmin">
         <div class="d-flex flex-lg-row flex-md-column w-100 justify-content-between">
