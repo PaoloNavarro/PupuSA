@@ -28,24 +28,24 @@ class AuthController extends Controller {
 
                 if($userModel->isAdmin($usuario)) {
                     $_SESSION["user_type"] = "admin";
-                    header("Location: /MyFood/Admin/");
+                    header("Location:" . URL ."/Admin/");
                 } else {
                     $_SESSION["user_type"] = "normal";
-                    header("Location: /MyFood");
+                    header("Location:" . URL ."");
                 }
                 exit(); // Agregamos exit() para detener la ejecución del script después de redireccionar
             } else {
                 $this->RenderView("Home/login", ["error" => "Usuario o contraseña incorrectos"]);
             }
         } else {
-            header("Location: /MyFood");
+            header("Location: ". URL ."");
 
         }
     }
 
     public function logout(){
         session_destroy();
-        header("Location: /MyFood");
+        header("Location: . URL .");
     }
 
 }

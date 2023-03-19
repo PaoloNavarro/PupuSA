@@ -1,4 +1,3 @@
-
 <?php
 
 define("DEFAULT_URL" , "Home/Index");
