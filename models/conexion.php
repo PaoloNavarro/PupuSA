@@ -7,8 +7,9 @@
 
             try {
 
+                
                 // Conexión
-                $con = new PDO('mysql:host=localhost; dbname=pupusa', 'root', '');
+                $con = new PDO('mysql:host=' . host . '; dbname=' . dbname, user, past);
         
                 // Errores
                 $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

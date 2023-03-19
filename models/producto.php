@@ -1,5 +1,5 @@
 <?php
-require_once 'Conexion.php';
+require_once 'models/conexion.php';
 
 class Producto {
     private $id_producto;

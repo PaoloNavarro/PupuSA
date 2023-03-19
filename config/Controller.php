@@ -20,8 +20,7 @@ class Controller
         $view = strtolower($view);
         // Agrega la variable $loggedIn al arreglo $viewData
         $viewData['loggedIn'] = $this->loggedIn;
-        
-        echo"$view";
+        echo($view);
         if (file_exists("views/{$view}.php")) {
             require_once "views/{$view}.php";
         }
