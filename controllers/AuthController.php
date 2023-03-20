@@ -1,5 +1,5 @@
 <?php
-require_once "models/UsuarioModel.php";
+require_once "models/usuariomodel.php";
 
 class AuthController extends Controller {
     
@@ -28,7 +28,7 @@ class AuthController extends Controller {
 
                 if($userModel->isAdmin($usuario)) {
                     $_SESSION["user_type"] = "admin";
-                    header("Location:" . URL ."/Admin/");
+                    header("Location:" . URL ."Admin");
                 } else {
                     $_SESSION["user_type"] = "normal";
                     header("Location:" . URL ."");
@@ -45,7 +45,7 @@ class AuthController extends Controller {
 
     public function logout(){
         session_destroy();
-        header("Location: . URL .");
+        header("Location: " . URL);
     }
 
 }

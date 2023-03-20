@@ -13,7 +13,7 @@ if(isset($_SESSION["user"])){
             <div class="form-box">
                 <div class="form-value">   
                     
-                    <form method="POST" class="form" action="<?=URL?>auth/login">
+                    <form method="POST" class="form" action="<?=URL?>Auth/login">
                 
                         <h2>Login</h2>
                         <!-- Email -->
