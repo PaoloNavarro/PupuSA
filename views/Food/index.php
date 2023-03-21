@@ -5,34 +5,32 @@
 
 
 <body>
+
+<h1>Listado de productos</h1>
+
     <div class="container pt-2">
 
         <div class="products">
             
-            <div class="product">
-                <div class="image">
-                    <img src="public/img/earphone.png" alt="">
+            <?php foreach ($viewData['productos'] as $producto) { ?>
+                <div class="product">
+                    <div class="image">
+                        <img src="<?php echo $producto->getImageUrl(); ?>" alt="">
+                    </div>
+                    <div class="namePrice">
+                        <h3><?php echo $producto->getNombre(); ?></h3>
+                        <span><?php echo $producto->getPrecio(); ?></span>
+                    </div>
+                    <p><?php echo $producto->getDescripcionProd(); ?></p>
+                    <div class="stars">
+                        <input type="number" name="cantidad" value="1" min="1" max="10">
+                    </div>
+                    <div class="bay">
+                        <button>Agregar al carrito</button>
+                    </div>
                 </div>
-                <div class="namePrice">
-                    <h3>earphone</h3>
-                    <span>$ 15.99</span>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit..</p>
-                <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <div class="bay">
-                    <button> bay now </button>
-                </div>
-            </div>
+            <?php } ?>
             
-
-            
-
             
         </div>
     </div>
