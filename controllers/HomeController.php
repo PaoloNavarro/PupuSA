@@ -25,7 +25,7 @@ class HomeController extends Controller
     }
     public function Carrito()
     {
-        $this->RenderView("Home/Carrito");
+        
     }
 
 }

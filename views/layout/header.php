@@ -84,7 +84,7 @@
                         </li>
                     </ul>
                     <li class="nav-item">
-            <a class="nav-link" href="<?= URL ?>Home/carrito">
+            <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
                 <i class="fa-solid fa-cart-shopping"></i> Ver Carrito
             </a>
         </li>

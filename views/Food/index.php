@@ -5,7 +5,6 @@
 
 
 <body>
-
 <h1>Listado de productos</h1>
 
     <div class="container pt-2">
@@ -22,12 +21,16 @@
                         <span><?php echo $producto->getPrecio(); ?></span>
                     </div>
                     <p><?php echo $producto->getDescripcionProd(); ?></p>
-                    <div class="stars">
-                        <input type="number" name="cantidad" value="1" min="1" max="10">
-                    </div>
-                    <div class="bay">
-                        <button>Agregar al carrito</button>
-                    </div>
+                    <form method="POST" action="<?php echo URL . 'Carrito/agregarProducto'; ?>">
+
+                        <input type="hidden" name="id_producto" value="<?php echo $producto->getIdProducto(); ?>">
+                        <div class="stars">
+                            <input type="number" name="cantidad" value="1" min="1" max="10">
+                        </div>
+                        <div class="bay">
+                            <button type="submit">Agregar al carrito</button>
+                        </div>
+                    </form>
                 </div>
             <?php } ?>
             
