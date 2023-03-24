@@ -14,7 +14,7 @@ class CarritoController extends Controller{
         }
   }
   public function agregarProducto() {
-
+ 
     // Verificar si se ha enviado el formulario
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Obtener los datos del formulario

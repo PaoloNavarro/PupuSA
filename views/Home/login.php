@@ -7,7 +7,7 @@ if(isset($_SESSION["user"])){
 
 <?php require_once VIEW_LAYOUT_PATH . 'header.php' ?>
 <link rel="stylesheet" href="<?= URL . "public/css/login.css" ?>">
-<html>
+
     <body>
         <section>
             <div class="form-box">
@@ -56,5 +56,6 @@ if(isset($_SESSION["user"])){
 
     </body>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</html>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<?php require_once VIEW_LAYOUT_PATH . "footer.php" ?>

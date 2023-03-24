@@ -1,4 +1,5 @@
 <?php require_once VIEW_LAYOUT_PATH . 'header.php'; ?>
+<link rel="stylesheet" href="<?= URL . "public/css/carrito.css" ?>">
 
 <body>
 
@@ -8,42 +9,63 @@
 
 
 
-            <table>
-                <thead>
+    <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                    <th>Precio total</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $total = 0; // variable para acumular el total
+                foreach ($viewData['carrito'] as $item) { ?>
                     <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio unitario</th>
-                        <th>Precio total</th>
-                        <th>Eliminar</th>
+                        <td><?php echo $item['producto']->getNombre(); ?></td>
+                        <td><?php echo $item['cantidad']; ?></td>
+                        <td><?php echo $item['producto']->getPrecio(); ?></td>
+                        <td><?php
+                            $precioTotal = $item['producto']->getPrecio() * $item['cantidad'];
+                            echo $precioTotal;
+                            $total += $precioTotal; // sumar al total acumulado
+                            ?></td>
+                        <td>
+                            <form action="<?php echo URL . 'carrito/eliminarProducto'; ?>" method="POST">
+                                <input type="hidden" name="id_producto" value="<?php echo $item['producto']->getIdProducto(); ?>">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($viewData['carrito'] as $item) { ?>
-                        <tr>
-                         <td><?php echo $item['producto']->getNombre(); ?></td>
-                         <td><?php echo $item['cantidad']; ?></td>
-                         <td><?php echo $item['producto']->getPrecio(); ?></td>
-                            <td><?php echo $item['producto']->getPrecio() * $item['cantidad']; ?></td>
-                            <td>
-                                <form action="<?php echo URL . 'carrito/eliminarProducto'; ?>" method="POST">
-                                    <input type="hidden" name="id_producto" value="<?php echo $item['producto']->getIdProducto(); ?>">
-                                    <button type="submit">Eliminar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">Total:</td>
-                    </tr>
-                </tfoot>
-            </table>
+                <?php } ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total:</td>
+                    <td><?php echo $total; ?></td>
+                </tr>
+            </tfoot>
+        </table>
+        <form action="<?php echo URL . 'comprar'; ?>" method="POST">
+            <h2>Opciones de pago</h2>
+            <div>
+                <input type="radio" name="pago" value="tarjeta" id="pago-tarjeta">
+                <label for="pago-tarjeta">Tarjeta de crédito</label>
+            </div>
+            <div>
+                <input type="radio" name="pago" value="paypal" id="pago-paypal">
+                <label for="pago-paypal">PayPal</label>
+            </div>
+            <div>
+                <input type="radio" name="pago" value="efectivo" id="pago-efectivo">
+                <label for="pago-efectivo">Efectivo</label>
+            </div>
+            <button type="submit">Comprar</button>
+        </form>
 
-            <form action="<?php echo URL . 'comprar'; ?>" method="POST">
-                <button type="submit">Comprar</button>
-            </form>
+          
 
 
 
@@ -54,5 +76,5 @@
 <?php require_once VIEW_LAYOUT_PATH . "footer.php"; ?>
 
 
-<?php
+
 
