@@ -21,6 +21,13 @@ body{
 .nav-link , .active{
     color: #F2921D !important;
     font-size: 1.1rem;
+    
+    
+}
+.nav-link2 , .active{
+    color: #F2921D !important;
+    font-size: 1.1rem;
+    
 }
 
 .active{
@@ -31,6 +38,7 @@ body{
     background-color: #A61F69;
     border-radius: 5px;
     color: white !important;
+    
 }
 
 .bg-morado{

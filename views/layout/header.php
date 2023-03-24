@@ -48,54 +48,70 @@
 </nav>
 <?php endif; ?>
 
+<!-- Here -->
+
 <nav class="navbar navbar-expand-lg bg-light mb-3 navbar-fixed">
+    
   <div class="container">
     <a class="navbar-brand" href="./">PupuSA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
     </button>
 
     
     <!-- Opciones del menu -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="d-flex flex-lg-row flex-md-column w-100 justify-content-between">
-            <ul class="navbar-nav align-middle">
-                <li class="nav-item">
-                <a class="nav-link" href="<?=URL?>">Inicio</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="<?=URL?>Food">Comida</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link"  href="<?=URL?>Home/Nosotros">Nosotros</a>
-                
-                </li>
-            </ul>
+    <div class="offcanvas offcanvas-start half-screen" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="navbarNavLabel">Menú</h5>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body justify-content-between">
+                <ul class="navbar-nav align-middle">
+                    <li class="nav-item">
+                    <a class="nav-link" href="<?=URL?>">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="<?=URL?>Food">Comida</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link"  href="<?=URL?>Home/Nosotros">Nosotros</a>
+                    
+                    </li>
+                </ul>
 
-               <?php if($viewData['loggedIn']): //Si hay sesión iniciada ?>
-                    <ul class="navbar-nav align-middle">
+                <?php if($viewData['loggedIn']): //Si hay sesión iniciada ?>
+                        <ul class="navbar-nav align-middle">
+                            <li class="nav-item">
+                                <span class="nav-link">Hola: <?= $_SESSION["user"] ?></span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="Auth/Logout" class="nav-link">
+                                    <i class="fa-solid fa-sign-out"></i> Cerrar sesión
+                                </a>
+                            </li>
+                        </ul>
                         <li class="nav-item">
-                            <span class="nav-link">Hola: <?= $_SESSION["user"] ?></span>
-                        </li>
-                        <li class="nav-item">
-                            <a href="Auth/Logout" class="nav-link">
-                                <i class="fa-solid fa-sign-out"></i> Cerrar sesión
+                            <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
+                                <i class="fa-solid fa-cart-shopping"></i> Ver Carrito
                             </a>
                         </li>
-                    </ul>
-                    <li class="nav-item">
-            <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
-                <i class="fa-solid fa-cart-shopping"></i> Ver Carrito
-            </a>
-        </li>
                 <?php else: //Si no hay sesión iniciada ?>
                     <ul class="navbar-nav align-middle">
-                        <li class="nav-item registrar-btn">
+                        <!-- Pantallas grandes  - ocultar -->
+                        <li class="nav-item registrar-btn d-none d-lg-block">
                             <a href="<?=URL?>Home/Login" class="nav-link">
                                 <i class="fa-solid fa-user"></i> Ingresar / Registrarse
-                            </a>
+                            </a>                  
                         </li>
-                        <li class="nav-item">
+                        <!-- Pantallas pequeñas login - mostrar -->
+                        <li class="nav-item d-lg-none">
+                            <a href="<?=URL?>Home/Login" class="nav-link">
+                                Ingresar / Registrarse
+                            </a>
+                            
+                        </li>
+                        <!-- carrito pantallas grandes  -->
+                        <li class="nav-item d-none d-lg-block">
                             <a href="" class="nav-link position-relative">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-morado">
@@ -104,15 +120,25 @@
                                 </span>
                             </a>
                         </li>
+                        <!-- carrito pantallas grandes  -->
+                        <li class="nav-item d-lg-none">
+                             <a class="nav-link" href="#">Carrito</a>
+                        </li>
                     </ul>
                 <?php endif; ?>
-
-
-
+            </div>
         </div>
-    </div>
   </div>
 </nav>
 
+<style>
+    @media (max-width: 991.98px) {
+  .half-screen {
+    width: 50%;
+    max-width: 250px;
+  }
+}
+
+</style>
 
 <!-- Fin navbar -->

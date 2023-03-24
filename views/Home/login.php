@@ -7,6 +7,7 @@ if(isset($_SESSION["user"])){
 
 <?php require_once VIEW_LAYOUT_PATH . 'header.php' ?>
 <link rel="stylesheet" href="<?= URL . "public/css/login.css" ?>">
+
 <html>
     <body>
         <section>
