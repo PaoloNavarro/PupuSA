@@ -20,8 +20,8 @@ class CarritoController extends Controller{
       // Obtener los datos del formulario
       $id_producto = $_POST['id_producto'];
       $cantidad = $_POST['cantidad'];
-      var_dump($id_producto);
-      var_dump( $cantidad);
+      //var_dump($id_producto);
+      //var_dump( $cantidad);
       // Obtener el producto de la base de datos
       $producto = Producto::buscarPorId($id_producto);
       
@@ -29,7 +29,7 @@ class CarritoController extends Controller{
       if ($producto) {
         // Obtener el carrito actual
         $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : array();
-        var_dump($carrito);
+        //var_dump($carrito);
         // Verificar si el producto ya está en el carrito
         if (isset($carrito[$id_producto])) {
           // Actualizar la cantidad del producto en el carrito
@@ -48,7 +48,7 @@ class CarritoController extends Controller{
         // Redirigir al listado de productos
         header('Location: ' . URL . 'Food');
         //var_dump($_SESSION['carrito']);
-        //exit();
+        exit();
       }
     }
   }

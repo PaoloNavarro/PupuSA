@@ -33,7 +33,7 @@
                             $total += $precioTotal; // sumar al total acumulado
                             ?></td>
                         <td>
-                            <form action="<?php echo URL . 'carrito/eliminarProducto'; ?>" method="POST">
+                            <form action="<?php echo URL . 'Carrito/eliminarProducto'; ?>" method="POST">
                                 <input type="hidden" name="id_producto" value="<?php echo $item['producto']->getIdProducto(); ?>">
                                 <button type="submit">Eliminar</button>
                             </form>
