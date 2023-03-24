@@ -110,20 +110,8 @@
                             </a>
                             
                         </li>
-                        <!-- carrito pantallas grandes  -->
-                        <li class="nav-item d-none d-lg-block">
-                            <a href="" class="nav-link position-relative">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-morado">
-                                    99+
-                                    <span class="visually-hidden">unread messages</span>
-                                </span>
-                            </a>
-                        </li>
-                        <!-- carrito pantallas grandes  -->
-                        <li class="nav-item d-lg-none">
-                             <a class="nav-link" href="#">Carrito</a>
-                        </li>
+                        
+                        
                     </ul>
                 <?php endif; ?>
             </div>
