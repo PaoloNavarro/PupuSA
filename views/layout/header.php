@@ -82,19 +82,45 @@
                 <?php if($viewData['loggedIn']): //Si hay sesión iniciada ?>
                         <ul class="navbar-nav align-middle">
                             <li class="nav-item">
-                                <span class="nav-link">Hola: <?= $_SESSION["user"] ?></span>
+                                <a class="nav-link dropdown d-none d-lg-block" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                                    <i class="fa-regular fa-user "></i> <span></span> Usuario
+                                </a>
+                                <!-- Lista de opciones -->
+                                 <div class="dropdown d-none d-lg-block">                      
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item text-start fw-light fw-bold fs-6">
+                                            <span class="dropstyle"><?= $_SESSION["user"] ?></span>
+                                        </li>
+                                        <hr>
+
+                                        <li class="nav-item text-start fw-light ">
+                                            <a href="Auth/Logout" class="dropstyle  ">
+                                                <i class="fa-solid fa-sign-out"></i> Cerrar sesión
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>                  
+                               
                             </li>
-                            <li class="nav-item">
-                                <a href="Auth/Logout" class="nav-link">
-                                    <i class="fa-solid fa-sign-out"></i> Cerrar sesión
+
+                            <li class="nav-item text-start d-lg-none">
+                                <span class="nav-link"><?= $_SESSION["user"] ?></span>
+                            </li>
+                            
+                            <!-- carrito lg -->
+                            <li class="d-none d-lg-block">
+                                <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
+                                    <i class="fa-solid fa-cart-shopping"></i> Carrito
+                                </a>
+                            </li>
+                            <!-- carrito sm -->
+                            <li class="d-lg-none">
+                                <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
+                                    Carrito
                                 </a>
                             </li>
                         </ul>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
-                                <i class="fa-solid fa-cart-shopping"></i> Ver Carrito
-                            </a>
-                        </li>
+                        
                 <?php else: //Si no hay sesión iniciada ?>
                     <ul class="navbar-nav align-middle">
                         <!-- Pantallas grandes  - ocultar -->

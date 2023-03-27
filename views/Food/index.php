@@ -5,7 +5,7 @@
 
 
 <body>
-<h1>Listado de productos</h1>
+<h1 class="text-center">Listado de productos</h1>
 
     <div class="container pt-2">
 
@@ -14,11 +14,11 @@
             <?php foreach ($viewData['productos'] as $producto) { ?>
                 <div class="product">
                     <div class="image">
-                        <img src="<?php echo $producto->getImageUrl(); ?>" alt="">
+                        <img class="imgt" src="<?php echo $producto->getImageUrl(); ?>" alt="">
                     </div>
                     <div class="namePrice">
                         <h3><?php echo $producto->getNombre(); ?></h3>
-                        <span><?php echo $producto->getPrecio(); ?></span>
+                        <span><?php echo "$ ".$producto->getPrecio(); ?></span>
                     </div>
                     <p><?php echo $producto->getDescripcionProd(); ?></p>
                     <form method="POST" action="<?php echo URL . 'Carrito/agregarProducto'; ?>">
@@ -38,9 +38,7 @@
         </div>
     </div>
 
-        
-
-
+ 
 </body>
 <!-- FIN CONTENIDO -->
 

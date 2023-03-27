@@ -24,6 +24,13 @@ body{
     
     
 }
+
+.dropstyle{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    color: black;
+}
 .nav-link2 , .active{
     color: #F2921D !important;
     font-size: 1.1rem;

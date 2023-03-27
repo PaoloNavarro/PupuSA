@@ -3,13 +3,13 @@
 
 <body>
 
-    <h1>Carrito de compras</h1>
+    <h1 class="text-center">Carrito de compras</h1>
 
-    <div class="container pt-2">
+    <div class="table-responsive container pt-2">
 
 
 
-    <table>
+    <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Producto</th>
@@ -35,7 +35,7 @@
                         <td>
                             <form action="<?php echo URL . 'Carrito/eliminarProducto'; ?>" method="POST">
                                 <input type="hidden" name="id_producto" value="<?php echo $item['producto']->getIdProducto(); ?>">
-                                <button type="submit">Eliminar</button>
+                                <button class="btn btn-danger" type="submit">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -62,7 +62,7 @@
                 <input type="radio" name="pago" value="efectivo" id="pago-efectivo">
                 <label for="pago-efectivo">Efectivo</label>
             </div>
-            <button type="submit">Comprar</button>
+            <button class="btn btn-success" type="submit">Comprar</button>
         </form>
 
           
