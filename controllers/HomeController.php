@@ -23,6 +23,11 @@ class HomeController extends Controller
     {
         $this->RenderView("Home/Login");
     }
+    public function Registro()
+    {
+        $this->RenderView("Home/Registro");
+    }
+    
     public function Carrito()
     {
         

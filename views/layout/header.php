@@ -94,7 +94,7 @@
                                         <hr>
 
                                         <li class="nav-item text-start fw-light ">
-                                            <a href="Auth/Logout" class="dropstyle  ">
+                                            <a href="<?php echo URL; ?>Auth/logout" class="dropstyle  ">
                                                 <i class="fa-solid fa-sign-out"></i> Cerrar sesión
                                             </a>
                                         </li>

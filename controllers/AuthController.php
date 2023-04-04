@@ -42,10 +42,13 @@ class AuthController extends Controller {
 
         }
     }
-
+    public function redirectToHome() {
+        header("Location: " . URL);
+        exit();
+    }
     public function logout(){
         session_destroy();
-        header("Location: " . URL);
+        $this->redirectToHome();
     }
 
 }

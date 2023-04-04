@@ -48,15 +48,11 @@
                 </tr>
             </tfoot>
         </table>
-        <form action="<?php echo URL . 'comprar'; ?>" method="POST">
+        <form action="<?php echo URL . 'Pago/pagar'; ?>" method="POST">
             <h2>Opciones de pago</h2>
             <div>
                 <input type="radio" name="pago" value="tarjeta" id="pago-tarjeta">
                 <label for="pago-tarjeta">Tarjeta de crédito</label>
-            </div>
-            <div>
-                <input type="radio" name="pago" value="paypal" id="pago-paypal">
-                <label for="pago-paypal">PayPal</label>
             </div>
             <div>
                 <input type="radio" name="pago" value="efectivo" id="pago-efectivo">
