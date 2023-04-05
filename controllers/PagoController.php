@@ -1,4 +1,6 @@
 <?php
+require_once 'models/producto.php';
+
 class PagoController extends Controller
 {
     public function pagar()
@@ -10,12 +12,16 @@ class PagoController extends Controller
             // Si la opción de pago es tarjeta, mostrar vista para ingresar los datos de la tarjeta
             if ($opcion_pago == 'tarjeta') {
                 echo("entre en tarjeta");
+
                 $this->renderView("pago/tarjeta");
             }
 
             // Si la opción de pago es efectivo, mostrar vista para realizar el pago en efectivo
             if ($opcion_pago == 'efectivo') {
-                $this->renderView("Pago/efectivo");
+                 // Obtiene los datos del carrito de la sesión
+                $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : array();
+                // Renderiza la vista con el arreglo de los productos en carrito
+                $this->renderView("Pago/efectivo", array('carrito' => $carrito));
                 return;
             }
         }

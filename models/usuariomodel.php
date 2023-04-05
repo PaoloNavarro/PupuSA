@@ -25,6 +25,18 @@ class UsuarioModel {
         // Retornamos el resultado (o null si no se encontró ningún registro)
         return $result ? $result : null;
     }
+
+    // Método para obtener el ID del usuario logeado en la sesión
+    public static function getLoggedUserId() {
+        // Verificamos si el usuario ha iniciado sesión
+        if (isset($_SESSION['usuario_id'])) {
+            // Retornamos el ID del usuario almacenado en la sesión
+            return $_SESSION['usuario_id'];
+        } else {
+            // Si el usuario no ha iniciado sesión, retornamos null o puedes manejarlo de acuerdo a tus necesidades
+            return null;
+        }
+    }
     
     
     public static function getUserByEmailAndPassword($email, $password) {
@@ -42,6 +54,8 @@ class UsuarioModel {
 
         // Obtenemos los resultados
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Obtener el ID del usuario
+        $userId = $usuario['id'];
 
         // Cerramos la conexión
         $stmt->closeCursor();

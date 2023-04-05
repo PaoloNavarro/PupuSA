@@ -90,6 +90,7 @@
                                     <ul class="dropdown-menu">
                                         <li class="nav-item text-start fw-light fw-bold fs-6">
                                             <span class="dropstyle"><?= $_SESSION["user"] ?></span>
+
                                         </li>
                                         <hr>
 
@@ -105,6 +106,7 @@
 
                             <li class="nav-item text-start d-lg-none">
                                 <span class="nav-link"><?= $_SESSION["user"] ?></span>
+
                             </li>
                             
                             <!-- carrito lg -->
