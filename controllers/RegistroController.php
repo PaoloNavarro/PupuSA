@@ -32,7 +32,7 @@ class RegistroController extends Controller {
             // Intentamos crear el usuario
             if($userModel->createUser($nombre, $apellido, $correo, $telefono, $direccion, $sexo, $rol, $password)) {
                 // Si el usuario se creó correctamente, redireccionamos a la página de inicio de sesión
-                header("Location: " . URL . "Home/Login");
+                header("Location: " . URL . "Home/");
                 exit();
             } else {
                 // Si hubo algún error, mostramos un mensaje de error en la página de registro

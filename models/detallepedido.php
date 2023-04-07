@@ -8,15 +8,25 @@ class DetallePedido {
     private $idUsuario;
     private $idEstadoPedido;
     private $cantidad;
+    private $nombreUsuario;
+    private $nombreProducto;
+    private $estadoPedido;
+    private $precioProducto;
 
 
-    public function __construct($idDetalle=null, $idProducto=null, $idPedido=null, $idUsuario=null, $idEstadoPedido=null, $cantidad=null) {
+    public function __construct($idDetalle=null, $idProducto=null, $idPedido=null, $idUsuario=null, $idEstadoPedido=null, $cantidad=null,   $nombreUsuario = null,
+    $nombreProducto = null,
+    $estadoPedido = null,$precioProducto=null) {
         $this->idDetalle = $idDetalle;
         $this->idProducto = $idProducto;
         $this->idPedido = $idPedido;
         $this->idUsuario = $idUsuario;
         $this->idEstadoPedido = $idEstadoPedido;
         $this->cantidad = $cantidad;
+        $this->nombreUsuario = $nombreUsuario;
+        $this->nombreProducto = $nombreProducto;
+        $this->estadoPedido = $estadoPedido;
+        $this->precioProducto = $precioProducto;
 
     }
 
@@ -67,6 +77,38 @@ class DetallePedido {
         $this->cantidad = $cantidad;
     }
 
+    public function getNombreUsuario() {
+        return $this->nombreUsuario;
+    }
+    
+    public function setNombreUsuario($nombreUsuario) {
+        $this->nombreUsuario = $nombreUsuario;
+    }
+    
+    public function getNombreProducto() {
+        return $this->nombreProducto;
+    }
+    
+    public function setNombreProducto($nombreProducto) {
+        $this->nombreProducto = $nombreProducto;
+    }
+    
+    public function getEstadoPedido() {
+        return $this->estadoPedido;
+    }
+    
+    public function setEstadoPedido($estadoPedido) {
+        $this->estadoPedido = $estadoPedido;
+    }
+    public function getPrecioProducto() {
+        return $this->precioProducto;
+    }
+    
+    public function setPrecioProducto($precioProducto) {
+        $this->precioProducto = $precioProducto;
+    }
+    
+
     // Métodos para interactuar con la base de datos
 
     public function guardarDetallePedido() {
@@ -80,16 +122,14 @@ class DetallePedido {
     
         try {
             // Preparar la consulta SQL
-            $query = "INSERT INTO detalle_pedido (id_producto, id_pedido, id_usuario, id_estado_pedido, cantidad) 
-            VALUES (?, ?, ?, ?, ?)";
+            $query = "INSERT INTO detalle_pedido (id_producto, id_pedido, cantidad) 
+            VALUES (?, ?, ?)";
             $stmt = $con->prepare($query);
     
             // Asignar los valores a los parámetros de la consulta
             $stmt->bindParam(1, $this->idProducto);
             $stmt->bindParam(2, $this->idPedido);
-            $stmt->bindParam(3, $this->idUsuario);
-            $stmt->bindParam(4, $this->idEstadoPedido);
-            $stmt->bindParam(5, $this->cantidad);
+            $stmt->bindParam(3, $this->cantidad);
 
     
             // Ejecutar la consulta
@@ -107,28 +147,31 @@ class DetallePedido {
             return false; // Retorna false si hubo un error
         }
     }
-    //metodo para traer detalle de pedido
-        public function obtenerPedido($idPedido)
-        {
-            // Obtener la conexión a la base de datos
-            $con = Conexion::getConection();
+    public function obtenerDetallesPedido($idPedido)
+    {
+        // Obtener la conexión a la base de datos
+        $con = Conexion::getConection();
 
-            $query = $con->prepare("SELECT * FROM detalle_pedido WHERE id_pedido = :id_pedido");
-            $query->execute(['id_pedido' => $idPedido]);
+        $query = $con->prepare("SELECT dp.cantidad, p.nombre, p.precio 
+                                FROM detalle_pedido dp 
+                                JOIN producto p ON dp.id_producto = p.id_producto 
+                                WHERE dp.id_pedido = :id_pedido");
+        $query->execute(['id_pedido' => $idPedido]);
 
-            $detallesPedido = [];
-            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $detallePedido = new DetallePedido();
-                $detallePedido->setIdProducto($row['id_producto']);
-                $detallePedido->setIdPedido($row['id_pedido']);
-                $detallePedido->setIdUsuario($row['id_usuario']);
-                $detallePedido->setCantidad($row['cantidad']);
-                $detallesPedido[] = $detallePedido;
-            }
-
-            return $detallesPedido;
+        $detallesPedido = [];
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $detallePedido = new DetallePedido();
+            $detallePedido->setIdPedido($idPedido);
+            $detallePedido->setCantidad($row['cantidad']);
+            $detallePedido->setNombreProducto($row['nombre']);
+            $detallePedido->setPrecioProducto($row['precio']);
+            $detallesPedido[] = $detallePedido;
         }
 
+        return $detallesPedido;
+    }
+
+    
 
     // Otros métodos para consultar, actualizar o eliminar detalles de pedido si es necesario
     

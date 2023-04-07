@@ -3,6 +3,99 @@
 require_once "models/conexion.php";
 
 class UsuarioModel {
+    private $id_usuario;
+    private $nombre_usuario;
+    private $apellido_usuario;
+    private $correo;
+    private $telefono;
+    private $direccion;
+    private $sexo;
+    private $rol;
+    private $password;
+
+    public function __construct($id_usuario=null, $nombre_usuario=null, $apellido_usuario=null, $correo=null, $telefono=null, $direccion=null, $sexo=null, $rol=null, $password=null) {
+        $this->id_usuario = $id_usuario;
+        $this->nombre_usuario = $nombre_usuario;
+        $this->apellido_usuario = $apellido_usuario;
+        $this->correo = $correo;
+        $this->telefono = $telefono;
+        $this->direccion = $direccion;
+        $this->sexo = $sexo;
+        $this->rol = $rol;
+        $this->password = $password;
+    }
+
+    public function getIdUsuario() {
+        return $this->id_usuario;
+    }
+
+    public function setIdUsuario($id_usuario) {
+        $this->id_usuario = $id_usuario;
+    }
+
+    public function getNombreUsuario() {
+        return $this->nombre_usuario;
+    }
+
+    public function setNombreUsuario($nombre_usuario) {
+        $this->nombre_usuario = $nombre_usuario;
+    }
+
+    public function getApellidoUsuario() {
+        return $this->apellido_usuario;
+    }
+
+    public function setApellidoUsuario($apellido_usuario) {
+        $this->apellido_usuario = $apellido_usuario;
+    }
+
+    public function getCorreo() {
+        return $this->correo;
+    }
+
+    public function setCorreo($correo) {
+        $this->correo = $correo;
+    }
+
+    public function getTelefono() {
+        return $this->telefono;
+    }
+
+    public function setTelefono($telefono) {
+        $this->telefono = $telefono;
+    }
+
+    public function getDireccion() {
+        return $this->direccion;
+    }
+
+    public function setDireccion($direccion) {
+        $this->direccion = $direccion;
+    }
+
+    public function getSexo() {
+        return $this->sexo;
+    }
+
+    public function setSexo($sexo) {
+        $this->sexo = $sexo;
+    }
+
+    public function getRol() {
+        return $this->rol;
+    }
+
+    public function setRol($rol) {
+        $this->rol = $rol;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
+    }
      
     public static function getUserByEmail($correo) {
         // Obtenemos la instancia de la conexión a la base de datos
@@ -106,5 +199,33 @@ class UsuarioModel {
         // Retornamos true si se creó el usuario o false si hubo algún error
         return $result;
     }
+
+    public static function obtenerPorId($id_usuario) {
+        // Obtenemos la instancia de la conexión a la base de datos
+        $con = Conexion::getConection();
+    
+        // Preparamos la consulta SQL
+        $query = "SELECT * FROM usuarios WHERE id_usuario = :id_usuario";
+    
+        // Preparamos la sentencia
+        $stmt = $con->prepare($query);
+    
+        // Vinculamos los parámetros
+        $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
+    
+        // Ejecutamos la consulta
+        $stmt->execute();
+    
+        // Obtenemos el resultado
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // Cerramos la conexión
+        $stmt->closeCursor();
+        $con = null;
+    
+        // Retornamos el resultado (o null si no se encontró ningún registro)
+        return $result ?: null;
+    }
+    
     
 }

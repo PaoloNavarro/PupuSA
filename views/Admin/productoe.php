@@ -2,7 +2,8 @@
 
 <div class="container">
   <h1 class="mt-5">Listado de Productos</h1>
-  <table class="table table-striped">
+  <div class="table-responsive">
+  <table class="table">
     <thead>
       <tr>
         <th style="display:none;" scope="col">#</th>
@@ -38,6 +39,8 @@
       <?php endforeach; ?>
     </tbody>
   </table>
+</div>
+
 </div>
 
 <?php require_once VIEW_LAYOUT_PATH . "footer.php"; ?>

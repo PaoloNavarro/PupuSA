@@ -81,7 +81,7 @@
           Por favor ingrese una contraseña.
         </div>
       </div>
-
+      <hr>
       <div class="form-group">
       <input class="btn btn-primary" type="submit" name="submit" value="Registrarse">
       </div>

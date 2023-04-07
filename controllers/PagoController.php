@@ -11,7 +11,6 @@ class PagoController extends Controller
 
             // Si la opción de pago es tarjeta, mostrar vista para ingresar los datos de la tarjeta
             if ($opcion_pago == 'tarjeta') {
-                echo("entre en tarjeta");
 
                 $this->renderView("pago/tarjeta");
             }

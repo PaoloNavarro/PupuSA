@@ -35,7 +35,7 @@
             </tfoot>
         </table>
 
-        <input type="hidden" name="id_estado_pedido" value="<?php 1; ?>">
+        <input type="hidden" name="id_estado_pedido" value="1">
 
         <h2>Ingrese la dirección de envío</h2>
         <div>

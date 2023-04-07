@@ -12,12 +12,12 @@
 
                                             </li>
                                             <li class="nav-item text-start fw-light ">
-                                                <a href="<?php echo URL; ?>Auth/logout" class="dropstyle  ">
+                                                <a href="<?php echo URL; ?>Usuario/perfil" class="dropstyle  ">
                                                     <i class="fa-solid fa-sign-out"></i> Mi perfil
                                                 </a>
                                             </li>
                                             <li class="nav-item text-start fw-light ">
-                                                <a href="<?php echo URL; ?>Auth/logout" class="dropstyle  ">
+                                                <a href="<?php echo URL; ?>Usuario/pedido" class="dropstyle  ">
                                                     <i class="fa-solid fa-sign-out"></i> Mis pedidos
                                                 </a>
                                             </li>

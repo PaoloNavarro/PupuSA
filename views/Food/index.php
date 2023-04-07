@@ -8,24 +8,24 @@
     <div class="container pt-2">
 
         <h1 class="text-center">Listado de productos</h1>
-        <form method="GET" action="<?php echo URL . 'Food/'; ?>" class="mb-4">
-                <div class="form-group row">
-                    <label for="categoria" class="col-sm-2 col-form-label">Categoría:</label>
-                    <div class="col-sm-10">
-                        <select name="categoria" class="form-control">
-                            <option value="">Todas las categorías</option>
-                            <?php foreach ($viewData['categorias'] as $categoria) { ?>
-                                <option value="<?php echo $categoria->getIdCategoria(); ?>"><?php echo $categoria->getDescripcion(); ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-10 offset-sm-2">
-                        <button type="submit" class="btn btn-primary">Filtrar</button>
-                    </div>
-                </div>
-            </form>
+        <form method="GET" action="<?php echo URL . 'Food/'; ?>" class="mb-4 form-inline">
+    <div class="form-group mr-2">
+        <label for="categoria" class="sr-only">Categoría:</label>
+        <select name="categoria" class="form-control">
+            <option value="">Todas las categorías</option>
+            <?php foreach ($viewData['categorias'] as $categoria) { ?>
+                <option value="<?php echo $categoria->getIdCategoria(); ?>"><?php echo $categoria->getDescripcion(); ?></option>
+            <?php } ?>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary ml-2">Filtrar</button>
+</form>
+
+
+
+
+
+
 
         <div class="container pt-2">
 

@@ -92,24 +92,26 @@ class AdminController extends Controller
          $this->RenderView("Admin/Pedidos", ['pedidos' => $pedidos]);
      }
  
-     public function DetallePedido()
-     {
-         //if (!isset($_GET['id_pedido'])) {
-             // Si no se pasó, redirigimos al listado de pedidos
-           //  header('Location: ' . URL . 'Admin/Pedidos');
-             //exit();
-         //}
- 
-         $idPedido=isset($_POST['id_pedido']);
-         // llamamos al modelo DetallePedido y creamos una instancia
-         $detallePedido = new DetallePedido();
-     
-         // llamamos al método obtenerDetallePedido y pasamos el id del pedido como argumento
-         $detallesPedido = $detallePedido->obtenerPedido($idPedido);
-         
-         // enviamos los resultados a la vista del detalle del pedido
-         $this->RenderView("Admin/DetallePedido", ['detallesPedido' => $detallesPedido]);
-     }
+        public function DetallePedido()
+        {
+            $idPedido = $_POST['id_pedido'];
+
+            // llamamos al modelo Pedido y creamos una instancia
+            $pedido = new Pedido();
+
+            // llamamos al método obtenerPedidoPorId y pasamos el id del pedido como argumento
+            $pedidos = $pedido->obtenerPedidoPorId($idPedido);
+
+            // llamamos al modelo DetallePedido y creamos una instancia
+            $detallePedido = new DetallePedido();
+
+            // llamamos al método obtenerDetallesPedido y pasamos el id del pedido como argumento
+            $detallesPedido = $detallePedido->obtenerDetallesPedido($idPedido);
+
+            // enviamos los resultados a la vista del detalle del pedido
+            $this->RenderView("Admin/DetallePedido", ['pedidos' => $pedidos, 'detallesPedido' => $detallesPedido]);
+        }
+
 
      public function agregarproducto()
      {

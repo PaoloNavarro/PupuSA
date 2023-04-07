@@ -5,7 +5,7 @@ class AuthController extends Controller {
     
     public function index(){
         if(isset($_SESSION["user"])){
-            header("Location: /MyFood");
+            header("Location: ". URL);
         } else {
             $this->RenderView("Home/login.php");
         }
