@@ -30,6 +30,8 @@
       <label for="image_url">URL de la imagen:</label>
       <input type="text" class="form-control" id="image_url" name="image_url" required>
     </div>
+    <input type="hidden" name="estado" value="1">
+
 
     <button type="submit" class="btn btn-primary">Agregar producto</button>
   </form>

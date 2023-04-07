@@ -5,24 +5,29 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th style="display:none;" scope="col">#</th>
         <th scope="col">Nombre</th>
         <th scope="col">Precio</th>
         <th scope="col">Descripción</th>
         <th scope="col">Categoría</th>
         <th scope="col">URL de la imagen</th>
-        <th scope="col"></th>
+        <th scope="col">Estado</th>
+        <th scope="col">Editar</th>
       </tr>
     </thead>
     <tbody>
       <?php foreach($viewData['productos'] as $producto): ?>
       <tr>
-        <th scope="row"><?php echo $producto->getIdProducto(); ?></th>
+        <th style="display:none;" scope="row"><?php echo $producto->getIdProducto(); ?></th>
         <td><?php echo $producto->getNombre(); ?></td>
         <td><?php echo $producto->getPrecio(); ?></td>
         <td><?php echo $producto->getDescripcionProd(); ?></td>
         <td><?php echo $producto->getCategoria(); ?></td>
         <td><?php echo $producto->getImageUrl(); ?></td>
+        <td>
+            <?php require_once 'estadoproducto.php'; ?>
+            <?php echo mostrarEstadoProducto($producto); ?>
+        </td>
         <td>
         <form method="post" action="<?php echo URL . 'Admin/editarproducto'?>">
           <input type="hidden" name="id_producto" value="<?php echo $producto->getIdProducto(); ?>">
@@ -36,3 +41,4 @@
 </div>
 
 <?php require_once VIEW_LAYOUT_PATH . "footer.php"; ?>
+

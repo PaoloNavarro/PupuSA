@@ -8,16 +8,19 @@ class Producto {
     private $descripcion_prod;
     private $categoria;
     private $image_url;
+    private $estado;
 
-    public function __construct($id_producto = null, $nombre = null, $precio = null, $descripcion_prod = null, $categoria = null,$image_url = null) {
+
+    public function __construct($id_producto = null, $nombre = null, $precio = null, $descripcion_prod = null, $categoria = null, $image_url = null, $estado = null) {
         $this->id_producto = $id_producto;
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->descripcion_prod = $descripcion_prod;
         $this->categoria = $categoria;
-        $this->image_url = $image_url; // asignar el valor de la nueva propiedad
-
+        $this->image_url = $image_url;
+        $this->estado = $estado;
     }
+    
     public function getImageUrl() {
         return $this->image_url;
     }
@@ -66,16 +69,24 @@ class Producto {
         $this->categoria = $categoria;
     }
 
+    public function getEstado() {
+        return $this->estado;
+    }
+    
+    public function setEstado($estado) {
+        $this->estado = $estado;
+    }
+    
+
     public static function listarProductos() {
         $productos = array();
         try {
             $con = Conexion::getConection();
-            $sql = "SELECT p.id_producto, p.nombre, p.precio, p.descripcion_prod, c.descripcion AS categoria, p.image_url FROM producto p JOIN categoria c ON p.categoria = c.id_categoria;
-            ";
+            $sql = "SELECT p.id_producto, p.nombre, p.precio, p.descripcion_prod, c.descripcion AS categoria, p.image_url, p.estado FROM producto p JOIN categoria c ON p.categoria = c.id_categoria";
             $stmt = $con->prepare($sql);
             $stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $producto = new Producto($row['id_producto'], $row['nombre'], $row['precio'], $row['descripcion_prod'], $row['categoria'], $row['image_url']);
+                $producto = new Producto($row['id_producto'], $row['nombre'], $row['precio'], $row['descripcion_prod'], $row['categoria'], $row['image_url'], $row['estado']);
                 $productos[] = $producto;
             }
             $stmt = null;
@@ -85,6 +96,7 @@ class Producto {
         }
         return $productos;
     }
+    
     public static function buscarPorId($id_producto) {
         try {
             $con = Conexion::getConection();
@@ -94,7 +106,7 @@ class Producto {
             $stmt->execute();
     
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $producto = new Producto($row['id_producto'], $row['nombre'], $row['precio'], $row['descripcion_prod'], $row['categoria'], $row['image_url']);
+                $producto = new Producto($row['id_producto'], $row['nombre'], $row['precio'], $row['descripcion_prod'], $row['categoria'], $row['image_url'], $row['estado']);
                 return $producto;
             }
     
@@ -105,17 +117,19 @@ class Producto {
         }
         return null;
     }
+    
 
-    public static function agregarProducto($nombre, $precio, $descripcion_prod, $categoria, $image_url) {
+    public static function agregarProducto($nombre, $precio, $descripcion_prod, $categoria, $image_url, $estado) {
         try {
             $con = Conexion::getConection();
-            $sql = "INSERT INTO producto (nombre, precio, descripcion_prod, categoria, image_url) VALUES (:nombre, :precio, :descripcion_prod, :categoria, :image_url)";
+            $sql = "INSERT INTO producto (nombre, precio, descripcion_prod, categoria, image_url, estado) VALUES (:nombre, :precio, :descripcion_prod, :categoria, :image_url, :estado)";
             $stmt = $con->prepare($sql);
             $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
             $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
             $stmt->bindParam(':descripcion_prod', $descripcion_prod, PDO::PARAM_STR);
             $stmt->bindParam(':categoria', $categoria, PDO::PARAM_INT);
             $stmt->bindParam(':image_url', $image_url, PDO::PARAM_STR);
+            $stmt->bindParam(':estado', $estado, PDO::PARAM_INT); // Se agrega el parámetro del estado
             $stmt->execute();
             $stmt = null;
             $con = null;
@@ -123,6 +137,7 @@ class Producto {
             echo "Error: " . $e->getMessage();
         }
     }
+    
     
     public static function editarProducto($id_producto) {
         try {
@@ -133,7 +148,7 @@ class Producto {
             $stmt->execute();
     
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $producto = new Producto($row['id_producto'], $row['nombre'], $row['precio'], $row['descripcion_prod'], $row['categoria'], $row['image_url']);
+                $producto = new Producto($row['id_producto'], $row['nombre'], $row['precio'], $row['descripcion_prod'], $row['categoria'], $row['image_url'], $row['estado']);
                 return $producto;
             }
     
@@ -145,24 +160,46 @@ class Producto {
         return null;
     }
     
-    public static function actualizarProducto($id_producto, $nombre, $precio, $descripcion_prod, $categoria, $image_url) {
+    public static function actualizarProducto($id_producto, $nombre, $precio, $descripcion_prod, $categoria, $image_url, $estado) {
         try {
             $con = Conexion::getConection();
-            $sql = "UPDATE producto SET nombre = :nombre, precio = :precio, descripcion_prod = :descripcion_prod, categoria = :categoria, image_url = :image_url WHERE id_producto = :id";
+            $sql = "UPDATE producto SET nombre = :nombre, precio = :precio, descripcion_prod = :descripcion_prod, categoria = :categoria, image_url = :image_url, estado = :estado WHERE id_producto = :id_producto";
             $stmt = $con->prepare($sql);
             $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
             $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
             $stmt->bindParam(':descripcion_prod', $descripcion_prod, PDO::PARAM_STR);
             $stmt->bindParam(':categoria', $categoria, PDO::PARAM_INT);
             $stmt->bindParam(':image_url', $image_url, PDO::PARAM_STR);
+            $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+            $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+            $stmt->execute();
+            $stmt = null;
+            $con = null;
+        } catch (PDOException $e) {
+            echo "Error en la base de datos: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Error general: " . $e->getMessage();
+        }
+    }
+    
+    
+    
+    public function actualizarEstado($id_producto, $nuevo_estado) {
+        try {
+            $con = Conexion::getConection();
+            $sql = "UPDATE producto SET estado = :nuevo_estado WHERE id_producto = :id";
+            $stmt = $con->prepare($sql);
+            $stmt->bindParam(':nuevo_estado', $nuevo_estado, PDO::PARAM_INT);
             $stmt->bindParam(':id', $id_producto, PDO::PARAM_INT);
             $stmt->execute();
+            
             $stmt = null;
             $con = null;
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
     }
+    
     
     
 }

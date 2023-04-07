@@ -104,10 +104,11 @@ class AdminController extends Controller
         $descripcion = $_POST['descripcion'];
         $categoria = $_POST['categoria'];
         $image_url = $_POST['image_url'];
+        $estado = $_POST['estado'];
         
         $producto = new Producto();
         
-        $resultado = $producto->agregarProducto($nombre, $precio, $descripcion, $categoria, $image_url);
+        $resultado = $producto->agregarProducto($nombre, $precio, $descripcion, $categoria, $image_url,$estado);
        
             // si se agregó el producto correctamente, redirigir al listado de productos
             header('Location: ' . URL . 'Food/');
@@ -133,25 +134,41 @@ class AdminController extends Controller
          $this->renderView("Admin/Actualizarproducto",$data);
      }
 
-    public function actualizarproducto()
-    {
-            // Comprobar si el formulario se ha enviado
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                // Recoger los datos del formulario
-                $id_producto = $_POST['id'];
-                $nombre = $_POST['nombre'];
-                $precio = $_POST['precio'];
-                $descripcion = $_POST['descripcion'];
-                $categoria = $_POST['categoria'];
-                $imagen = $_POST['imagen'];
-                $producto = Producto::actualizarProducto($id_producto, $nombre, $precio, $descripcion, $categoria, $imagen);
+     public function actualizarproducto()
+     {
+         // Comprobar si el formulario se ha enviado
+         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+             // Recoger los datos del formulario
+             $id_producto = $_POST['id'];
+             $nombre = $_POST['nombre'];
+             $precio = $_POST['precio'];
+             $descripcion = $_POST['descripcion'];
+             $categoria = $_POST['categoria'];
+             $imagen = $_POST['imagen'];
+             $estado = $_POST['estado'];
+             var_dump($estado);
+             var_dump($categoria);
+     
+             Producto::actualizarProducto($id_producto, $nombre, $precio, $descripcion, $categoria, $imagen, $estado);
+     
+             // Redirigir al usuario a la página de listado de productos
+             header('Location: ' . URL . 'Admin/ProductoE');
+             exit;
+         }
+     }
+     
+    public function cambiarEstadoProducto(){
+        $id_producto = $_POST['id_producto'];
+        $estado_actual = $_POST['estado'];
+        $nuevo_estado = ($estado_actual == 1) ? 2 : 1;
+         // llamar al método actualizarEstado del modelo Producto
+         $producto = new Producto();
+        $producto->actualizarEstado($id_producto, $nuevo_estado);
 
-                
-                // Redirigir al usuario a la página de listado de productos
-                header('Location: ' . URL . 'Admin/ProductoE');
-                exit;
-            }
-            
+        // redirigir al listado de productos
+         header('Location: ' . URL . 'Admin/productoe');
+
+
     }
 
      

@@ -19,11 +19,20 @@
             <div class="form-group">
                 <label for="categoria">Categoría:</label>
                 <select class="form-control" id="categoria" name="categoria" required>
-                    <?php foreach($viewData['categorias']  as $categoria): ?>
-                        <option value="<?php echo $categoria->getIdCategoria(); ?>"><?php echo $categoria->getDescripcion(); ?></option>
-                    <?php endforeach; ?>
+                <?php foreach($viewData['categorias'] as $categoria): ?>
+                    <?php $selected = ($categoria->getIdCategoria() == $viewData['producto']->getCategoria()) ? 'selected' : ''; ?>
+                    <option value="<?php echo $categoria->getIdCategoria(); ?>" <?php echo $selected; ?>><?php echo $categoria->getDescripcion(); ?></option>
+                <?php endforeach; ?>
                 </select>
             </div>
+            <div class="form-group">
+            <label for="estado">Estado:</label>
+                <select class="form-control" id="estado" name="estado" required>
+                    <option value="1"<?php echo ($viewData['producto']->getEstado() == 1) ? ' selected' : ''; ?>>Disponible</option>
+                    <option value="2"<?php echo ($viewData['producto']->getEstado() == 2) ? ' selected' : ''; ?>>No disponible</option>
+                </select>
+            </div>
+
 
             <div class="form-group">
             <label for="imagen">URL de la imagen</label>

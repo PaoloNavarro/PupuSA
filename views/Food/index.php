@@ -12,30 +12,32 @@
         <div class="products">
             
             <?php foreach ($viewData['productos'] as $producto) { ?>
-                <div class="product">
-                    <div class="image">
-                        <img class="imgt" src="<?php echo $producto->getImageUrl(); ?>" alt="">
+                <?php if($producto->getEstado() == 1) { ?>
+                    <div class="product">
+                        <div class="image">
+                            <img class="imgt" src="<?php echo $producto->getImageUrl(); ?>" alt="">
+                        </div>
+                        <div class="namePrice">
+                            <h3><?php echo $producto->getNombre(); ?></h3>
+                            <span><?php echo "$ ".$producto->getPrecio(); ?></span>
+                        </div>
+                        <p><?php echo $producto->getDescripcionProd(); ?></p>
+                        <?php if(isset($_SESSION["user"])) { ?>
+                            <form method="POST" action="<?php echo URL . 'Carrito/agregarProducto'; ?>">
+                                <input type="hidden" name="id_producto" value="<?php echo $producto->getIdProducto(); ?>">
+                                <div class="stars">
+                                    <input type="number" name="cantidad" value="1" min="1" max="10">
+                                </div>
+                                <div class="bay">
+                                    <button type="submit">Agregar al carrito</button>
+                                </div>
+                            </form>
+                        <?php } else { ?>
+                            <p>Debes iniciar sesión para agregar productos al carrito.</p>
+                            <a href="<?php echo URL . 'Home/Login'; ?>">Iniciar sesión</a>
+                        <?php } ?>
                     </div>
-                    <div class="namePrice">
-                        <h3><?php echo $producto->getNombre(); ?></h3>
-                        <span><?php echo "$ ".$producto->getPrecio(); ?></span>
-                    </div>
-                    <p><?php echo $producto->getDescripcionProd(); ?></p>
-                    <?php if(isset($_SESSION["user"])) { ?>
-                        <form method="POST" action="<?php echo URL . 'Carrito/agregarProducto'; ?>">
-                            <input type="hidden" name="id_producto" value="<?php echo $producto->getIdProducto(); ?>">
-                            <div class="stars">
-                                <input type="number" name="cantidad" value="1" min="1" max="10">
-                            </div>
-                            <div class="bay">
-                                <button type="submit">Agregar al carrito</button>
-                            </div>
-                        </form>
-                    <?php } else { ?>
-                        <p>Debes iniciar sesión para agregar productos al carrito.</p>
-                         <a href="<?php echo URL . 'Home/Login'; ?>">Iniciar sesión</a>
-                    <?php } ?>
-                </div>
+                <?php } ?>
             <?php } ?>
             
             
