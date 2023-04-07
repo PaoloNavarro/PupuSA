@@ -11,6 +11,16 @@
                                                 <span class="dropstyle"><?= $_SESSION["user"] ?></span>
 
                                             </li>
+                                            <li class="nav-item text-start fw-light ">
+                                                <a href="<?php echo URL; ?>Auth/logout" class="dropstyle  ">
+                                                    <i class="fa-solid fa-sign-out"></i> Mi perfil
+                                                </a>
+                                            </li>
+                                            <li class="nav-item text-start fw-light ">
+                                                <a href="<?php echo URL; ?>Auth/logout" class="dropstyle  ">
+                                                    <i class="fa-solid fa-sign-out"></i> Mis pedidos
+                                                </a>
+                                            </li>
                                             <hr>
 
                                             <li class="nav-item text-start fw-light ">

@@ -96,6 +96,27 @@ class Producto {
         }
         return $productos;
     }
+    public static function listarProductosByIdCategoria($idCategoria) {
+        $productos = array();
+        try {
+            $con = Conexion::getConection();
+            $sql = "SELECT p.id_producto, p.nombre, p.precio, p.descripcion_prod, c.descripcion AS categoria, p.image_url, p.estado FROM producto p JOIN categoria c ON p.categoria = c.id_categoria WHERE p.categoria = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bindParam(1, $idCategoria, PDO::PARAM_INT);
+            $stmt->execute();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $producto = new Producto($row['id_producto'], $row['nombre'], $row['precio'], $row['descripcion_prod'], $row['categoria'], $row['image_url'], $row['estado']);
+                $productos[] = $producto;
+            }
+            $stmt = null;
+            $con = null;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        return $productos;
+    }
+
+
     
     public static function buscarPorId($id_producto) {
         try {

@@ -16,7 +16,7 @@
                 <ul class="navbar-nav align-middle">
                     <li class="nav-item"><a class="nav-link"  href="<?= URL ?>Admin">Inicio Admin</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Pedidos">Pedidos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Register">Registrar usuarios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Register">Usuarios</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="promocionesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Promociones
@@ -35,6 +35,15 @@
                             <li><a class="dropdown-item" href="<?= URL ?>Food/">Ver productos</a></li>
                             <li><a class="dropdown-item" href="<?= URL ?>Admin/ProductoA">Agregar producto</a></li>
                             <li><a class="dropdown-item" href="<?= URL ?>Admin/ProductoE">Editar producto</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productosDropdown">
+                            <li><a class="dropdown-item" href="<?= URL ?>Admin/Acategoria">Agregar categoria</a></li>
+                            <li><a class="dropdown-item" href="<?= URL ?>Admin/Ecategoria">Editar categoria</a></li>
                         </ul>
                     </li>
                 </ul>
