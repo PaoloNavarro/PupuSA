@@ -1,10 +1,3 @@
-<?php
-if(isset($_SESSION["user"])){
-    header("Location: /Myfood");
-    exit;
-}
-?>
-
 <?php require_once VIEW_LAYOUT_PATH . 'header.php' ?>
 
 
@@ -34,10 +27,10 @@ if(isset($_SESSION["user"])){
                 <option value="Otro">Otro</option>
             </select><br><br>
 
-            <label for="rol" hidden>Rol:</label>
-            <select name="rol" id="rol" hidden>
+            <label for="rol" >Rol:</label>
+            <select name="rol" id="rol">
             <option value="1">Administrador</option>
-            <option value="2" selected>Usuario</option>
+            <option value="2" >Usuario</option>
             </select>
 
 

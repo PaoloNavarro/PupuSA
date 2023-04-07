@@ -70,7 +70,8 @@ class Producto {
         $productos = array();
         try {
             $con = Conexion::getConection();
-            $sql = "SELECT * FROM producto";
+            $sql = "SELECT p.id_producto, p.nombre, p.precio, p.descripcion_prod, c.descripcion AS categoria, p.image_url FROM producto p JOIN categoria c ON p.categoria = c.id_categoria;
+            ";
             $stmt = $con->prepare($sql);
             $stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -104,6 +105,65 @@ class Producto {
         }
         return null;
     }
+
+    public static function agregarProducto($nombre, $precio, $descripcion_prod, $categoria, $image_url) {
+        try {
+            $con = Conexion::getConection();
+            $sql = "INSERT INTO producto (nombre, precio, descripcion_prod, categoria, image_url) VALUES (:nombre, :precio, :descripcion_prod, :categoria, :image_url)";
+            $stmt = $con->prepare($sql);
+            $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
+            $stmt->bindParam(':descripcion_prod', $descripcion_prod, PDO::PARAM_STR);
+            $stmt->bindParam(':categoria', $categoria, PDO::PARAM_INT);
+            $stmt->bindParam(':image_url', $image_url, PDO::PARAM_STR);
+            $stmt->execute();
+            $stmt = null;
+            $con = null;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    
+    public static function editarProducto($id_producto) {
+        try {
+            $con = Conexion::getConection();
+            $sql = "SELECT * FROM producto WHERE id_producto = :id";
+            $stmt = $con->prepare($sql);
+            $stmt->bindParam(':id', $id_producto, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $producto = new Producto($row['id_producto'], $row['nombre'], $row['precio'], $row['descripcion_prod'], $row['categoria'], $row['image_url']);
+                return $producto;
+            }
+    
+            $stmt = null;
+            $con = null;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        return null;
+    }
+    
+    public static function actualizarProducto($id_producto, $nombre, $precio, $descripcion_prod, $categoria, $image_url) {
+        try {
+            $con = Conexion::getConection();
+            $sql = "UPDATE producto SET nombre = :nombre, precio = :precio, descripcion_prod = :descripcion_prod, categoria = :categoria, image_url = :image_url WHERE id_producto = :id";
+            $stmt = $con->prepare($sql);
+            $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
+            $stmt->bindParam(':descripcion_prod', $descripcion_prod, PDO::PARAM_STR);
+            $stmt->bindParam(':categoria', $categoria, PDO::PARAM_INT);
+            $stmt->bindParam(':image_url', $image_url, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id_producto, PDO::PARAM_INT);
+            $stmt->execute();
+            $stmt = null;
+            $con = null;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    
     
 }
 

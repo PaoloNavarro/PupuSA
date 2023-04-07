@@ -107,9 +107,31 @@ class DetallePedido {
             return false; // Retorna false si hubo un error
         }
     }
-    
+    //metodo para traer detalle de pedido
+        public function obtenerPedido($idPedido)
+        {
+            // Obtener la conexión a la base de datos
+            $con = Conexion::getConection();
+
+            $query = $con->prepare("SELECT * FROM detalle_pedido WHERE id_pedido = :id_pedido");
+            $query->execute(['id_pedido' => $idPedido]);
+
+            $detallesPedido = [];
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $detallePedido = new DetallePedido();
+                $detallePedido->setIdProducto($row['id_producto']);
+                $detallePedido->setIdPedido($row['id_pedido']);
+                $detallePedido->setIdUsuario($row['id_usuario']);
+                $detallePedido->setCantidad($row['cantidad']);
+                $detallesPedido[] = $detallePedido;
+            }
+
+            return $detallesPedido;
+        }
+
 
     // Otros métodos para consultar, actualizar o eliminar detalles de pedido si es necesario
+    
 
 }
 ?>

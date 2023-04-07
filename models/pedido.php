@@ -56,6 +56,35 @@ class Pedido
         $stmt = null;
         $con = null;
     }
+    public function listarPedidos($fecha = null)
+    {
+        $con = Conexion::getConection();
+
+        if ($fecha === null) {
+            $fecha = date('Y-m-d');
+        }
+
+        $sql = "SELECT * FROM pedidos WHERE fecha_pedido = :fecha_pedido";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':fecha_pedido', $fecha, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $resultados = array();
+
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $pedido = new Pedido();
+            $pedido->setIdPedido($fila['id_pedido']);
+            $pedido->setTotalPagar($fila['total_pagar']);
+            $pedido->setFechaPedido($fila['fecha_pedido']);
+            $resultados[] = $pedido;
+        }
+
+        $stmt = null;
+        $con = null;
+
+        return $resultados;
+    }
+
 }
 
 ?>

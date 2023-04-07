@@ -21,133 +21,20 @@
     <link rel="shortcut icon" href="<?= URL . "public/img/logo.png" ?>" type="image/x-icon">
 </head>
 <body>
+  
+
 
 <!-- Inicio Navbar -->
-<!-- Inicio Navbar -->
-<?php if(isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admin"): ?>
+<?php if(isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admin"){ ?>
+    <!--Navbar admin-->
+    <?php require_once VIEW_LAYOUT_PATH . 'navadmin.php' ?>
 
-<nav class="navbar navbar-expand-lg bg-light mb-3 navbar-fixed">
-    <div class="container">
-    <a class="navbar-brand" href="./">Administradores</a>
+<?php } else { ?>
 
-    <div class="collapse navbar-collapse" id="navbarAdmin">
-        <div class="d-flex flex-lg-row flex-md-column w-100 justify-content-between">
-        <ul class="navbar-nav align-middle">
-                <li class="nav-item"><a class="nav-link"  href="<?= URL ?>Admin">Inicio Admin</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Pedidos">Pedidos</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Register">Registrar Usuario</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Promociones">Promociones</a></li>
-                </li>
-            </ul>
+    <!-- Navbar usuario comun -->
+    <?php require_once VIEW_LAYOUT_PATH . 'navcomun.php' ?>
 
-        </div>
-    </div>
-
-    </div>
-
-</nav>
-<?php endif; ?>
-
-<!-- Here -->
-
-<nav class="navbar navbar-expand-lg bg-light mb-3 navbar-fixed">
-    
-  <div class="container">
-    <a class="navbar-brand" href="./">PupuSA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-    </button>
-
-    
-    <!-- Opciones del menu -->
-    <div class="offcanvas offcanvas-start half-screen" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="navbarNavLabel">Menú</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body justify-content-between">
-                <ul class="navbar-nav align-middle">
-                    <li class="nav-item">
-                    <a class="nav-link" href="<?=URL?>">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="<?=URL?>Food">Comida</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link"  href="<?=URL?>Home/Nosotros">Nosotros</a>
-                    
-                    </li>
-                </ul>
-
-                <?php if($viewData['loggedIn']): //Si hay sesión iniciada ?>
-                        <ul class="navbar-nav align-middle">
-                            <li class="nav-item">
-                                <a class="nav-link dropdown d-none d-lg-block" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                                    <i class="fa-regular fa-user "></i> <span></span> Usuario
-                                </a>
-                                <!-- Lista de opciones -->
-                                 <div class="dropdown d-none d-lg-block">                      
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item text-start fw-light fw-bold fs-6">
-                                            <span class="dropstyle"><?= $_SESSION["user"] ?></span>
-
-                                        </li>
-                                        <hr>
-
-                                        <li class="nav-item text-start fw-light ">
-                                            <a href="<?php echo URL; ?>Auth/logout" class="dropstyle  ">
-                                                <i class="fa-solid fa-sign-out"></i> Cerrar sesión
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>                  
-                               
-                            </li>
-
-                            <li class="nav-item text-start d-lg-none">
-                                <span class="nav-link"><?= $_SESSION["user"] ?></span>
-
-                            </li>
-                            
-                            <!-- carrito lg -->
-                            <li class="d-none d-lg-block">
-                                <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
-                                    <i class="fa-solid fa-cart-shopping"></i> Carrito
-                                </a>
-                            </li>
-                            <!-- carrito sm -->
-                            <li class="d-lg-none">
-                                <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
-                                    Carrito
-                                </a>
-                            </li>
-                        </ul>
-                        
-                <?php else: //Si no hay sesión iniciada ?>
-                    <ul class="navbar-nav align-middle">
-                        <!-- Pantallas grandes  - ocultar -->
-                        <li class="nav-item registrar-btn d-none d-lg-block">
-                            <a href="<?=URL?>Home/Login" class="nav-link">
-                                <i class="fa-solid fa-user"></i> Ingresar / Registrarse
-                            </a>                  
-
-                        </li>
-                        <!-- Pantallas pequeñas login - mostrar -->
-                        <li class="nav-item d-lg-none">
-                            <a href="<?=URL?>Home/Login" class="nav-link">
-                                Ingresar / Registrarse
-                            </a>
-                            
-                        </li>
-
-                        
-                        
-                    </ul>
-                <?php endif; ?>
-            </div>
-        </div>
-  </div>
-</nav>
+<?php } ?>
 
 <style>
     @media (max-width: 991.98px) {

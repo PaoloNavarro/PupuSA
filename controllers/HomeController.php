@@ -25,7 +25,7 @@ class HomeController extends Controller
     }
     public function Registro()
     {
-        $this->RenderView("Home/Registro");
+        $this->RenderView("Layout/Registro");
     }
     
     public function Carrito()
