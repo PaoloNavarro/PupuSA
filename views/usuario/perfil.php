@@ -33,7 +33,8 @@
           <td><?php echo $viewData['usuario']['sexo']; ?></td>
         </tr>
       </table>
-      <button type="submit" class="btn btn-primary">Editar Información</button>
+      <a href="<?php echo URL ?>Usuario/editPerfil" class="btn btn-primary">Editar Información</a>
+      <a href="<?php echo URL ?>Usuario/cambioC" class="btn btn-primary">Cambiar Contraseña</a>
 
     </div>
   </div>

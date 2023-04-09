@@ -1,6 +1,6 @@
 <?php
 if(isset($_SESSION["user"])){
-    header("Location: /Myfood");
+    header("Location:".URL);
     exit;
 }
 ?>
@@ -13,15 +13,26 @@ if(isset($_SESSION["user"])){
     <section>
         <div class="form-box">
             <div class="form-value">   
-                
+            <div class="row">
+                <div class="col-md-12">
+                    <?php if (isset($viewData['error'])): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $viewData['error'] ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+
+
                 <form method="POST" class="form" action="<?=URL?>Auth/login">
             
-                    <h2>Login</h2>
+                    <h2>Inicio de sesion</h2>
                     <!-- Email -->
                     <div class="inputbox">
                             <ion-icon name="mail-outline"></ion-icon>
                             <input id="correo" name="usuario" type="email" required>
-                            <label for="correo">Email</label>
+                            <label for="correo">Correo</label>
 
                     </div>
 
@@ -29,13 +40,13 @@ if(isset($_SESSION["user"])){
                     <div class="inputbox">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                             <input  id="palabraSecreta" name="contrasena" type="password" required>
-                            <label for="">Password</label>
+                            <label for="">Contraseña</label>
                     </div>
 
-                    <button id="bton" name="btningresar" type="submit">Log in</button>
+                    <button id="bton" name="btningresar" type="submit">Iniciar sesion</button>
 
                     <div class="register" id="resgistbtn" name="resgistbtn">
-                        <p>Don't have a account <a href="<?= URL ?>Home/Registro">Register</a></p>
+                        <p>No tienes cuenta? <a href="<?= URL ?>Home/Registro">Registrarse</a></p>
                     </div>
                 
                 

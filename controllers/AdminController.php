@@ -77,23 +77,40 @@ class AdminController extends Controller
 
     //metodos con funcionalidades
     
-     //metodo para ver mis pedidos y filtrarlos por fechas.
+     //metodo para ver mis pedidos y filtrarlos por fechas  y estado.
      public function Pedidos()
-     {  
+     {
          $fechaActual = date('Y-m-d');
-         $fecha = isset($_POST['fecha_pedido']) ? $_POST['fecha_pedido'] : $fechaActual; 
-         
+         $fecha = isset($_POST['fecha_pedido']) ? $_POST['fecha_pedido'] : $fechaActual;
+         $id_estado = isset($_POST['id_estado']) ? $_POST['id_estado'] : null;
          // llamamos al modelo Pedido y creamos una instancia
+       
          $pedido = new Pedido();
-         // llamamos al método listarPedidos y pasamos la fecha como argumento
-         $pedidos = $pedido->listarPedidos($fecha);
-
+         // llamamos al método listarPedidos y pasamos la fecha y el ID de estado como argumentos
+         $pedidos = $pedido->listarPedidos($fecha, $id_estado);
+     
          // enviamos los resultados a la vista
          $this->RenderView("Admin/Pedidos", ['pedidos' => $pedidos]);
      }
- 
-        public function DetallePedido()
-        {
+
+     //cambiar estadado 
+     public function cambiarEstado()
+     {
+         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+             $id_pedido = $_POST['id_pedido'];
+             $id_estado = $_POST['id_estado2'];
+     
+             $pedidoModel = new Pedido();
+             $pedidoModel->actualizarEstado($id_pedido, $id_estado);
+     
+             header("Location: " . URL . "Admin/Pedidos");
+         }
+     }
+     
+
+    //metodo para obtener detalle de pedido
+    public function DetallePedido()
+    {
             $idPedido = $_POST['id_pedido'];
 
             // llamamos al modelo Pedido y creamos una instancia
@@ -110,7 +127,7 @@ class AdminController extends Controller
 
             // enviamos los resultados a la vista del detalle del pedido
             $this->RenderView("Admin/DetallePedido", ['pedidos' => $pedidos, 'detallesPedido' => $detallesPedido]);
-        }
+    }
 
 
      public function agregarproducto()

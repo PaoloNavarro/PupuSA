@@ -130,7 +130,7 @@ class Pedido
         $con = null;
     }
     
-    public function listarPedidos($fecha = null)
+    public function listarPedidos($fecha = null, $estado = null)
     {
         $con = Conexion::getConection();
     
@@ -138,9 +138,24 @@ class Pedido
             $fecha = date('Y-m-d');
         }
     
-        $sql = "SELECT pedidos.*, usuarios.nombre_usuario AS nombre_usuario, estado_pedido.estado AS estado_pedido FROM pedidos INNER JOIN usuarios ON pedidos.id_usuario = usuarios.id_usuario INNER JOIN estado_pedido ON pedidos.id_estado_pedido = estado_pedido.id_estado_pedido WHERE fecha_pedido = :fecha_pedido";
+        $sql = "SELECT pedidos.*, usuarios.nombre_usuario AS nombre_usuario, estado_pedido.estado AS estado_pedido 
+                FROM pedidos 
+                INNER JOIN usuarios ON pedidos.id_usuario = usuarios.id_usuario 
+                INNER JOIN estado_pedido ON pedidos.id_estado_pedido = estado_pedido.id_estado_pedido
+                WHERE pedidos.fecha_pedido = :fecha";
+    
+        if ($estado !== null) {
+            $sql .= " OR pedidos.id_estado_pedido = :id_estado_pedido";
+        }
+        
         $stmt = $con->prepare($sql);
-        $stmt->bindValue(':fecha_pedido', $fecha, PDO::PARAM_STR);
+        
+        $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
+        
+        if ($estado !== null) {
+            $stmt->bindValue(':id_estado_pedido', $estado, PDO::PARAM_INT);
+        }
+        
         $stmt->execute();
     
         $resultados = array();
@@ -162,6 +177,27 @@ class Pedido
     
         return $resultados;
     }
+    //cambia pedido en base al id.
+    public function actualizarEstado($id_pedido, $id_estado)
+    {
+        $con = Conexion::getConection();
+    
+        $sql = "UPDATE pedidos SET id_estado_pedido = :id_estado WHERE id_pedido = :id_pedido";
+        $stmt = $con->prepare($sql);
+        $stmt->bindValue(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindValue(':id_estado', $id_estado, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        $stmt = null;
+        $con = null;
+    }
+    
+        
+
+    
+    
+
+
     public function obtenerPedidoPorId($idPedido)
     {
         $con = Conexion::getConection();
@@ -192,42 +228,63 @@ class Pedido
         return $pedido;
     }
 
-    public function obtenerPedidosPorUsuario($idUsuario)
+    public function obtenerPedidosPorUsuario($id_usuario, $fecha = null, $estado = null)
     {
         $con = Conexion::getConection();
-
-        $sql = "SELECT pedidos.*, estado_pedido.estado AS estado_pedido FROM pedidos 
-                INNER JOIN estado_pedido ON pedidos.id_estado_pedido = estado_pedido.id_estado_pedido 
-                WHERE id_usuario = :id_usuario";
-        $stmt = $con->prepare($sql);
-        $stmt->bindValue(':id_usuario', $idUsuario, PDO::PARAM_INT);
-        $stmt->execute();
-
-        $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if (!$filas) {
-            return null;
+    
+        $sql = "SELECT pedidos.*, usuarios.nombre_usuario AS nombre_usuario, estado_pedido.estado AS estado_pedido 
+                FROM pedidos 
+                INNER JOIN usuarios ON pedidos.id_usuario = usuarios.id_usuario 
+                INNER JOIN estado_pedido ON pedidos.id_estado_pedido = estado_pedido.id_estado_pedido
+                WHERE ";
+    
+        if ($fecha !== null && $estado !== null && $fecha !== "" && $estado !== "") {
+            $sql .= "pedidos.fecha_pedido = :fecha AND pedidos.id_estado_pedido = :id_estado_pedido";
+        } else if ($fecha !== null && $fecha !== "") {
+            $sql .= "pedidos.fecha_pedido = :fecha";
+        } else if ($estado !== null && $estado !== "") {
+            $sql .= "pedidos.id_estado_pedido = :id_estado_pedido";
+        } else {
+            $sql .= "pedidos.id_usuario = :id_usuario";
         }
-
-        $pedidos = array();
-        foreach ($filas as $fila) {
+    
+        $stmt = $con->prepare($sql);
+    
+        if ($fecha !== null && $estado !== null && $fecha !== "" && $estado !== "") {
+            $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
+            $stmt->bindValue(':id_estado_pedido', $estado, PDO::PARAM_INT);
+        } else if ($fecha !== null && $fecha !== "") {
+            $stmt->bindValue(':fecha', $fecha, PDO::PARAM_STR);
+        } else if ($estado !== null && $estado !== "") {
+            $stmt->bindValue(':id_estado_pedido', $estado, PDO::PARAM_INT);
+        } else {
+            $stmt->bindValue(':id_usuario', $id_usuario, PDO::PARAM_INT);
+        }
+    
+        $stmt->execute();
+    
+        $resultados = array();
+    
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $pedido = new Pedido();
             $pedido->setIdPedido($fila['id_pedido']);
             $pedido->setTotalPagar($fila['total_pagar']);
             $pedido->setFechaPedido($fila['fecha_pedido']);
             $pedido->setIdUsuario($fila['id_usuario']);
+            $pedido->setNombreUsuario($fila['nombre_usuario']);
             $pedido->setIdEstadoPedido($fila['id_estado_pedido']);
             $pedido->setEstadoPedido($fila['estado_pedido']);
-            $pedido->setUbicacion($fila['ubicacion']);
-
-            $pedidos[] = $pedido;
+            $resultados[] = $pedido;
         }
-
+    
         $stmt = null;
         $con = null;
-
-        return $pedidos;
+    
+        return $resultados;
     }
+    
+
+    
 
 
     

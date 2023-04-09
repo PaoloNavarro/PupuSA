@@ -42,6 +42,9 @@
                                 <li class="d-none d-lg-block">
                                     <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
                                         <i class="fa-solid fa-cart-shopping"></i> Carrito
+                                        <?php if (isset($_SESSION['carrito'])): ?>
+                                         <span class="badge bg-danger"><?= count($_SESSION['carrito']) ?></span>
+                                        <?php endif; ?>
                                     </a>
                                 </li>
                                 <!-- carrito sm -->

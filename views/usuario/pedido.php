@@ -6,18 +6,24 @@
   <hr>
 
   <div class="row">
-  <form action="<?php echo URL . 'pedido/mis-pedidos'; ?>" method="get" class="mb-3">
-        <div class="form-group">
-          <label for="estado">Filtrar por estado:</label>
-          <select name="estado" id="estado" class="form-control">
-            <option value="">Todos</option>
-            <option value="En proceso">En proceso</option>
-            <option value="Finalizado">Finalizado</option>
-            <option value="Cancelado">Cancelado</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
+      <form method="post" action="<?php echo URL . 'Usuario/Pedido'; ?>">
+            <div class="form-group col-md-4">
+                <label for="fecha_pedido">Fecha:</label>
+                <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" value="<?php echo $fechaActual; ?>">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="id_estado">Estado:</label>
+                <select id="id_estado" name="id_estado" class="form-control">
+                    <option value="">Todos</option>
+                    <option value="1">En proceso</option>
+                    <option value="2">Finalizado</option>
+                    <option value="3">Cancelado</option>
+                </select>
+            </div>
+            <div class="pt-3">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+      </form>
     <div class="col-md-12">
       <?php if (empty($viewData['pedidos'])): ?>
         <p>No tienes pedidos activos en este momento</p>
@@ -29,7 +35,6 @@
               <th>Fecha</th>
               <th>Estado</th>
               <th>Ver</th>
-              <th>Cambiar Estado</th>
             </tr>
           </thead>
           <tbody>
@@ -38,12 +43,6 @@
                 <td><?php echo $pedido->getIdPedido(); ?></td>
                 <td><?php echo $pedido->getFechaPedido(); ?></td>
                 <td><?php echo $pedido->getEstadoPedido(); ?></td>
-                <td>
-                  <form method="post" action="<?php echo URL . 'Admin/DetallePedido'; ?>">
-                                  <input type="hidden" name="id_pedido" value="<?php echo $pedido->getIdPedido(); ?>">
-                                  <button type="submit" class="btn btn-info">Ver Detalle</button>
-                  </form>
-                </td>
                 <td>
                   <form method="post" action="<?php echo URL . 'Admin/DetallePedido'; ?>">
                                   <input type="hidden" name="id_pedido" value="<?php echo $pedido->getIdPedido(); ?>">

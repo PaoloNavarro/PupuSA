@@ -18,6 +18,8 @@ class RegistroController extends Controller {
             $sexo = $_POST["sexo"];
             $rol = $_POST["rol"];
             $password = $_POST["password"];
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
              // Creamos una instancia del modelo de usuario
              $userModel = new UsuarioModel();
 
@@ -28,15 +30,14 @@ class RegistroController extends Controller {
                 return;
             }
            
-
             // Intentamos crear el usuario
-            if($userModel->createUser($nombre, $apellido, $correo, $telefono, $direccion, $sexo, $rol, $password)) {
+            if($userModel->createUser($nombre, $apellido, $correo, $telefono, $direccion, $sexo, $rol, $hashed_password)) {
                 // Si el usuario se creó correctamente, redireccionamos a la página de inicio de sesión
                 header("Location: " . URL . "Home/");
                 exit();
             } else {
                 // Si hubo algún error, mostramos un mensaje de error en la página de registro
-                $this->RenderView("Home/registro.php", ["error" => "Error al crear el usuario"]);
+               // $this->RenderView("Home/registro.php", ["error" => "Error al crear el usuario"]);
             }
         } else {
             // Si no se recibió una petición POST, redireccionamos a la página de registro

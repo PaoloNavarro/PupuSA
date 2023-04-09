@@ -22,12 +22,13 @@ class AuthController extends Controller {
             $contrasena = $_POST["contrasena"];
 
             $userModel = new UsuarioModel();
+            $user = $userModel->getUserByEmail($usuario);
 
-            if($userModel->getUserByEmailAndPassword($usuario, $contrasena)) {
-                $userId = $userModel->getUserByEmailAndPassword($usuario, $contrasena)['id_usuario']; // Obtener el ID del usuario
+            if($user && password_verify($contrasena, $user['password'])) {
+                $userId = $user['id_usuario']; // Obtener el ID del usuario
                 $_SESSION["user_id"] = $userId; // Guardar el ID del usuario en la sesión
                 $_SESSION["user"] = $usuario;
-
+    
                 if($userModel->isAdmin($usuario)) {
                     $_SESSION["user_type"] = "admin";
                     header("Location:" . URL ."Admin");

@@ -175,7 +175,7 @@ class UsuarioModel {
     public static function createUser($nombre, $apellido, $correo, $telefono, $direccion, $sexo, $rol, $password) {
         // Obtenemos la conexión a la base de datos
         $con = Conexion::getConection();
-
+        var_dump($password);
         // Preparamos la consulta
         $stmt = $con->prepare("INSERT INTO usuarios (nombre_usuario, apellido_usuario, correo, telefono, direccion, sexo, rol, password) VALUES (:nombre, :apellido, :correo, :telefono, :direccion, :sexo, :rol, :password)");
 
@@ -187,7 +187,7 @@ class UsuarioModel {
         $stmt->bindParam(':direccion', $direccion, PDO::PARAM_STR);
         $stmt->bindParam(':sexo', $sexo, PDO::PARAM_STR);
         $stmt->bindParam(':rol', $rol, PDO::PARAM_INT);
-        $stmt->bindParam(':password', $password, PDO::PARAM_INT);
+        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
 
         // Ejecutamos la consulta
         $result = $stmt->execute();
@@ -226,6 +226,57 @@ class UsuarioModel {
         // Retornamos el resultado (o null si no se encontró ningún registro)
         return $result ?: null;
     }
+    public function actualizarPerfil($id_usuario, $nombre_usuario, $apellido_usuario, $correo, $telefono, $direccion, $sexo)
+    {
+        $con = Conexion::getConection();
+    
+        if (!$con) {
+            return false;
+        }
+    
+        $query = "UPDATE usuarios SET nombre_usuario=:nombre_usuario, apellido_usuario=:apellido_usuario, correo=:correo, telefono=:telefono, direccion=:direccion, sexo=:sexo WHERE id_usuario=:id_usuario";
+        $stmt = $con->prepare($query);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->bindParam(':apellido_usuario', $apellido_usuario);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->bindParam(':telefono', $telefono);
+        $stmt->bindParam(':direccion', $direccion);
+        $stmt->bindParam(':sexo', $sexo);
+        return $stmt->execute();
+    }
+
+    public function validarUsuario($id_usuario, $contrasena)
+    {
+        $con = Conexion::getConection();
+        $sql = "SELECT * FROM usuarios WHERE id_usuario = :id_usuario";
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(":id_usuario", $id_usuario);
+        $stmt->execute();
+
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario && password_verify($contrasena, $usuario['password'])) {
+            return $usuario;
+        } else {
+            return null;
+        }
+}
+
+
+    public function actualizarContrasena($id_usuario, $nueva_contrasena)
+    {
+        $con = Conexion::getConection();
+        $nueva_contrasena = password_hash($nueva_contrasena, PASSWORD_DEFAULT);
+        $query = "UPDATE usuarios SET password=:nueva_contrasena WHERE id_usuario=:id_usuario";
+        $stmt = $con->prepare($query);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->bindParam(':nueva_contrasena', $nueva_contrasena);
+        return $stmt->execute();
+    }
+
+
+    
     
     
 }
