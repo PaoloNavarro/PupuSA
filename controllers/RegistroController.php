@@ -26,8 +26,12 @@ class RegistroController extends Controller {
             $user = UsuarioModel::getUserByEmail($correo);
             if($user){
                 // El correo ya está registrado, mostrar un mensaje de error
-                echo "El correo electrónico ya está registrado. Por favor, utilice otro correo.";
-                return;
+
+                $_SESSION["mensaje"] = "El correo electrónico ya está registrado. Por favor, utilice otro correo.";
+                $_SESSION["mensaje_tipo"] = "alert-success";
+                $this->RenderView("Layout/Registro");
+                exit();
+
             }
            
             // Intentamos crear el usuario

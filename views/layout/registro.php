@@ -11,7 +11,13 @@
           
           <!-- Titulo  -->
           <h2>Registro de usuario</h2>
-
+          <?php if (isset($_SESSION["mensaje"]) && isset($_SESSION["mensaje_tipo"])): ?>
+              <div class="alert <?php echo $_SESSION["mensaje_tipo"]; ?> mt-3 mb-0">
+                  <?php echo $_SESSION["mensaje"]; ?>
+              </div>
+              <?php unset($_SESSION["mensaje"]); unset($_SESSION["mensaje_tipo"]); ?>
+          <?php endif; ?>
+          
            <div class="row">
                <!-- Nombre -->
             <div class="inputbox">

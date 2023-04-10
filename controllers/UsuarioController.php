@@ -49,8 +49,6 @@ class UsuarioController extends Controller
             $contrasena_actual = $_POST['contrasena_actual'];
             $nueva_contrasena = $_POST['nueva_contrasena'];
             $confirmar_contrasena = $_POST['confirmar_contrasena'];
-            var_dump($_SESSION["user_id"]);
-            var_dump($contrasena_actual);
     
             $usuario = new UsuarioModel();
             $usuario_valido = $usuario->validarUsuario($_SESSION["user_id"], $contrasena_actual);

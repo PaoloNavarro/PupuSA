@@ -4,12 +4,27 @@
 <body>
 
     <h1 class="text-center">Carrito de compras</h1>
+    <?php if (isset($_SESSION['error_pedido'])) { ?>
+    <div class="alert alert-danger" role="alert">
+        <?php echo $_SESSION['error_pedido']; ?>
+    </div>
+    <?php } ?>
+
+    <?php if (isset($_SESSION['success_pedido'])) { ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $_SESSION['success_pedido']; ?>
+        </div>
+    <?php } ?>
+
+    <?php unset($_SESSION['error_pedido'], $_SESSION['success_pedido']); ?>
 
     <div class="table-responsive container pt-2">
-
-
-
-    <table class="table table-hover">
+    <?php if (empty($viewData['carrito'])) { ?>
+        <div class="alert alert-warning" role="alert">
+            El carrito está vacío.
+        </div>
+    <?php } else { ?>
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Producto</th>
@@ -49,23 +64,22 @@
             </tfoot>
         </table>
         <form action="<?php echo URL . 'Pago/pagar'; ?>" method="POST">
-            <h2>Opciones de pago</h2>
-            <div>
-                <input type="radio" name="pago" value="tarjeta" id="pago-tarjeta">
-                <label for="pago-tarjeta">Tarjeta de crédito</label>
-            </div>
-            <div>
-                <input type="radio" name="pago" value="efectivo" id="pago-efectivo">
-                <label for="pago-efectivo">Efectivo</label>
-            </div>
-            <button class="btn btn-success" type="submit">Comprar</button>
-        </form>
+        <h2>Opciones de pago</h2>
+        <div>
+            <input type="radio" name="pago" value="tarjeta" id="pago-tarjeta">
+            <label for="pago-tarjeta">Tarjeta de crédito</label>
+        </div>
+        <div>
+            <input type="radio" name="pago" value="efectivo" id="pago-efectivo">
+            <label for="pago-efectivo">Efectivo</label>
+        </div>
+        <button class="btn btn-success" type="submit">Comprar</button>
+    
+    </form>
+    <?php } ?>
 
-          
+</div>
 
-
-
-    </div>
 
 </body>
 

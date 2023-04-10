@@ -2,6 +2,9 @@
 
 <body>
 <!--::::Pie de Pagina::::::-->
+        <div class="pb-5">
+        
+        </div>
     <footer class="pie-pagina">
         <div class="grupo-1">
             <div class="box">
@@ -24,7 +27,7 @@
             </div>
         </div>
         <div class="grupo-2">
-            <small>&copy; 2023 <b>PupuSA</b> - Todos los Derechos Reservados.</small>
+            <small>&copy; 2023 <b>PupuSA</b> - Todos los Derechos Reservados: Astrosoftware.</small>
         </div>
     </footer>
 </body>

@@ -1,4 +1,5 @@
 <?php require_once VIEW_LAYOUT_PATH . 'header.php' ?>
+<div class="container">
     <h2>Resumen del pedido</h2>
     <form action="<?php echo URL . 'Pedido/procesarPedido'; ?>" method="POST">
         <table class="table table-hover">
@@ -38,9 +39,12 @@
         <input type="hidden" name="id_estado_pedido" value="1">
 
         <h2>Ingrese la dirección de envío</h2>
-        <div>
-            <label for="direccion_envio">Dirección de envío:</label>
-            <input type="text" name="direccion_envio" id="direccion_envio">
+        <div class="mb-3">
+            <label for="direccion_envio" class="form-label">Dirección de envío:</label>
+            <input type="text" class="form-control" name="direccion_envio" id="direccion_envio" required>
         </div>
-        <button class="btn btn-success" type="submit">Procesar pago en efectivo</button>
+        <button class="btn btn-success" type="submit" require>Procesar pago en efectivo</button>
     </form>
+</div>
+<?php require_once VIEW_LAYOUT_PATH . 'footer.php' ?>
+

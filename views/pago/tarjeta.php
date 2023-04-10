@@ -8,7 +8,7 @@
             <h4>Información de Tarjeta de Crédito</h4>
             </div>
             <div class="card-body">
-            <form>
+            <form action="<?php echo URL . 'Pedido/procesarPedido'; ?>" method="POST">
                 <div class="form-group">
                 <label for="nombre">Nombre del Titular de la Tarjeta</label>
                 <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre">
