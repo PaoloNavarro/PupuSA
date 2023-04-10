@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light mb-3 navbar-fixed">
+<nav class="navbar navbar-expand-lg bg-light navbar-fixed">
         
     <div class="container">
         <a class="navbar-brand" href="<?=URL?>">PupuSA</a>
