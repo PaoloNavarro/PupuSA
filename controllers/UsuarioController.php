@@ -103,10 +103,20 @@ class UsuarioController extends Controller
         $sexo = $_POST['sexo'];
     
         $usuario = new UsuarioModel();
-        $usuario->actualizarPerfil($idUsuario, $nombreUsuario, $apellidoUsuario, $correo, $telefono, $direccion, $sexo);
+        $resultado = $usuario->actualizarPerfil($idUsuario, $nombreUsuario, $apellidoUsuario, $correo, $telefono, $direccion, $sexo);
     
-        header("Location: " . URL . "Usuario/perfil");
+        if ($resultado) {
+            $_SESSION['msg'] = 'Perfil actualizado correctamente';
+            $_SESSION['msg_type'] = 'success';
+        } else {
+            $_SESSION['msg'] = 'Error al actualizar perfil';
+            $_SESSION['msg_type'] = 'danger';
+        }
+        $id_usuario=$_SESSION["user_id"];
+        $usuario = UsuarioModel::obtenerPorId($id_usuario);
+        $this->RenderView("Usuario/editPerfil",['usuario' => $usuario]);
     }
+    
     
 
    

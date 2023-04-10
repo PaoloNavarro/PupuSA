@@ -1,7 +1,7 @@
 <?php require_once VIEW_LAYOUT_PATH . 'header.php'; ?>
 
 <div class="container">
-  <h1>Cambio de Contraseña</h1>
+  <h1 class="mt-3">Cambio de Contraseña</h1>
   <hr>
   <?php if (isset($_SESSION["mensaje"]) && isset($_SESSION["mensaje_tipo"])): ?>
     <div class="alert <?php echo $_SESSION["mensaje_tipo"]; ?> mt-3 mb-0">
@@ -25,7 +25,7 @@
           <label for="confirmar_contrasena">Confirmar Contraseña:</label>
           <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" class="form-control" placeholder="Confirme su nueva contraseña" required>
         </div>
-        <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+        <button type="submit" class="btn btn-primary mt-3">Cambiar Contraseña</button>
       </form>
     </div>
   </div>

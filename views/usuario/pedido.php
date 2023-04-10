@@ -1,10 +1,15 @@
 <?php require_once VIEW_LAYOUT_PATH . 'header.php'; ?>
 
 <div class="container">
-  <h1>Mis pedidos activos</h1>
+  <h1 class="pt-3">Mis pedidos</h1>
   
   <hr>
-
+  <?php if (isset($_SESSION['success_pedido'])) { ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $_SESSION['success_pedido']; ?>
+        </div>
+    <?php } ?>
+    <?php unset($_SESSION['error_pedido'], $_SESSION['success_pedido']); ?>
   <div class="row">
       <form method="post" action="<?php echo URL . 'Usuario/Pedido'; ?>">
             <div class="form-group col-md-4">

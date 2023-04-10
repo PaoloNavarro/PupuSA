@@ -11,8 +11,9 @@ class PagoController extends Controller
 
             // Si la opción de pago es tarjeta, mostrar vista para ingresar los datos de la tarjeta
             if ($opcion_pago == 'tarjeta') {
+                $carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : array();
 
-                $this->renderView("pago/tarjeta");
+                $this->renderView("pago/tarjeta", array('carrito' => $carrito));
             }
 
             // Si la opción de pago es efectivo, mostrar vista para realizar el pago en efectivo

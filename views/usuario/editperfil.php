@@ -1,8 +1,17 @@
 <?php require_once VIEW_LAYOUT_PATH . 'header.php'; ?>
 
 <div class="container">
-  <h1>Editar perfil</h1>
+  <h1 class="mt-3">Editar perfil</h1>
   <hr>
+  <?php if (isset($_SESSION['msg'])) { ?>
+    <div class="alert alert-<?php echo $_SESSION['msg_type']; ?>" role="alert">
+        <?php echo $_SESSION['msg']; ?>
+    </div>
+    <?php
+        unset($_SESSION['msg'], $_SESSION['msg_type']);
+    } ?>
+
+
 
   <div class="row">
     <div class="col-md-6">
@@ -36,7 +45,7 @@
           </select>
         </div>
         
-        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <button type="submit" class="btn btn-primary mt-3">Guardar cambios</button>
       </form>
     </div>
   </div>

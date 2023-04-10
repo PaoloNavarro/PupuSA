@@ -4,6 +4,7 @@
   <h1>Mi perfil</h1>
   <hr>
 
+
   <div class="row">
     <div class="col-md-6">
       <h3>Información personal</h3>
