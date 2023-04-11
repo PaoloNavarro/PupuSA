@@ -45,7 +45,10 @@
           </select>
         </div>
         
-        <button type="submit" class="btn btn-primary mt-3">Guardar cambios</button>
+        <button type="submit" class="btn btn-primary mt-3" title="Guardar cambios">
+         Guardar Cambios <i class="fa fa-save"></i>
+        </button>
+        
       </form>
     </div>
   </div>

@@ -130,26 +130,50 @@ class AdminController extends Controller
     }
 
 
-     public function agregarproducto()
-     {
+    public function agregarproducto()
+    {
         $nombre = $_POST['nombre'];
         $precio = $_POST['precio'];
         $descripcion = $_POST['descripcion'];
         $categoria = $_POST['categoria'];
-        $image_url = $_POST['image_url'];
         $estado = $_POST['estado'];
-        
-        $producto = new Producto();
-        
-        $resultado = $producto->agregarProducto($nombre, $precio, $descripcion, $categoria, $image_url,$estado);
-       
-            // si se agregó el producto correctamente, redirigir al listado de productos
-            header('Location: ' . URL . 'Food/');
-        
     
-        
-
-     }
+        // obtener información del archivo subido
+        $file = $_FILES['image_url'];
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        $file_size = $file['size'];
+        $file_error = $file['error'];
+    
+        // verificar que el archivo sea una imagen con una extensión válida
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+        $allowed_exts = array('jpg', 'jpeg', 'png', 'gif');
+        if (!in_array($file_ext, $allowed_exts)) {
+            die("Error: El archivo no es una imagen válida.");
+        }
+    
+        // crear la carpeta uploads si no existe
+        if (!is_dir('uploads')) {
+            mkdir('uploads');
+        }
+    
+        // generar nombre único para la imagen
+        $new_file_name = uniqid('', true) . '.' . $file_ext;
+    
+        // mover el archivo a la carpeta uploads
+        move_uploaded_file($file_tmp, 'uploads/' . $new_file_name);
+    
+        // obtener la URL completa de la imagen
+        $image_url = URL . 'uploads/' . $new_file_name;
+    
+        $producto = new Producto();
+    
+        $resultado = $producto->agregarProducto($nombre, $precio, $descripcion, $categoria, $image_url, $estado);
+    
+        // si se agregó el producto correctamente, redirigir al listado de productos
+        header('Location: ' . URL . 'Food/');
+    }
+    
 
      public function editarProducto()
      {    
@@ -168,27 +192,53 @@ class AdminController extends Controller
      }
 
      public function actualizarproducto()
-     {
-         // Comprobar si el formulario se ha enviado
-         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-             // Recoger los datos del formulario
-             $id_producto = $_POST['id'];
-             $nombre = $_POST['nombre'];
-             $precio = $_POST['precio'];
-             $descripcion = $_POST['descripcion'];
-             $categoria = $_POST['categoria'];
-             $imagen = $_POST['imagen'];
-             $estado = $_POST['estado'];
-          
-     
-             Producto::actualizarProducto($id_producto, $nombre, $precio, $descripcion, $categoria, $imagen, $estado);
-     
-             // Redirigir al usuario a la página de listado de productos
-             header('Location: ' . URL . 'Admin/ProductoE');
-             exit;
-         }
-     }
-     
+    {
+        // Comprobar si el formulario se ha enviado
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            // obtener información del archivo subido
+                $file = $_FILES['image_url'];
+                $file_name = $file['name'];
+                $file_tmp = $file['tmp_name'];
+                $file_size = $file['size'];
+                $file_error = $file['error'];
+               // verificar que el archivo sea una imagen con una extensión válida
+               $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+               $allowed_exts = array('jpg', 'jpeg', 'png', 'gif');
+               if (!in_array($file_ext, $allowed_exts)) {
+                   die("Error: El archivo no es una imagen válida.");
+               }
+           
+               // crear la carpeta uploads si no existe
+               if (!is_dir('uploads')) {
+                   mkdir('uploads');
+               }
+           
+               // generar nombre único para la imagen
+               $new_file_name = uniqid('', true) . '.' . $file_ext;
+           
+               // mover el archivo a la carpeta uploads
+               move_uploaded_file($file_tmp, 'uploads/' . $new_file_name);
+           
+               // obtener la URL completa de la imagen
+               $image_url = URL . 'uploads/' . $new_file_name;
+
+            // Recoger los datos del formulario
+            $id_producto = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $descripcion = $_POST['descripcion'];
+            $categoria = $_POST['categoria'];
+            $estado = $_POST['estado'];
+
+            Producto::actualizarProducto($id_producto, $nombre, $precio, $descripcion, $categoria, $image_url, $estado);
+
+            // Redirigir al usuario a la página de listado de productos
+            header('Location: ' . URL . 'Admin/ProductoE');
+            exit;
+        }
+    }
+
     public function cambiarEstadoProducto(){
         $id_producto = $_POST['id_producto'];
         $estado_actual = $_POST['estado'];

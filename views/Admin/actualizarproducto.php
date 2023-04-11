@@ -34,12 +34,16 @@
             </div>
 
 
-            <div class="form-group">
-            <label for="imagen">URL de la imagen</label>
-            <input type="text" class="form-control" id="imagen" name="imagen" value="<?php echo $viewData['producto']->getImageUrl(); ?>">
+            <div class="form-group row mb-3">
+                <label for="image_url" class="col-sm-3 col-form-label"><i class="fas fa-image"></i> Subir imagen:</label>
+                <div class="col-sm-9">
+                    <input type="file" class="form-control" id="image_url" name="image_url" accept="image/*" required>
+                </div>
             </div>
+
             <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
     </div>
+    
 
 <?php require_once VIEW_LAYOUT_PATH . "footer.php"; ?>
