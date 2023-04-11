@@ -2,7 +2,7 @@
 
     <div class="container">
     <h1 class="mt-5">Actualizar Producto</h1>
-        <form method="post" action="<?php echo URL . 'Admin/actualizarproducto'?>">
+        <form method="post"  enctype="multipart/form-data" action="<?php echo URL . 'Admin/actualizarproducto'?> ">
             <input type="hidden" name="id" value="<?php echo $viewData['producto']->getIdProducto(); ?>">
             <div class="form-group">
             <label for="nombre">Nombre</label>
