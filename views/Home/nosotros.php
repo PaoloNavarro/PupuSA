@@ -1,23 +1,23 @@
 <?php require_once VIEW_LAYOUT_PATH . 'header.php' ?>
+<link rel="stylesheet" href="<?= URL . "public/css/nosotros.css" ?>">
 
 
 <!-- INSERTAR CONTENIDO -->
 <body>
-  <div class="container-fluid">
-    <div class="row mt-5">
-      <div class="col-md-6">
-        <h1 class="text-center">Astrosoftware</h1>
-        <hr>
-        <h2 class="text-center">Sobre nosotros</h2>
-        <p class="text-justify">Astrosoftware es un grupo de estudiantes de ingeniería en desarrollo de software, conformado por Paolo Navarro como desarrollador backend en PHP, Martin Sanabria como Scrum Master, Diego Hernandez como especialista en Sys Daba MySQL y Anderson Carcamo como desarrollador front-end en CSS y Bootstrap.</p>
-        <p class="text-justify">El equipo se encuentra actualmente en su séptimo ciclo de carrera, equivalente al cuarto año, y está trabajando en un sistema de gestión de restaurante para una pupusería llamada PUPUSA. Con el objetivo de brindar una solución eficiente y práctica para la administración de la pupusería, el equipo ha estado trabajando arduamente para desarrollar un sistema que permita llevar un registro detallado de los pedidos, el inventario, los clientes y otros aspectos relevantes para el negocio.</p>
-        <p class="text-justify">Cada uno de los miembros del equipo ha aportado sus habilidades y conocimientos en el desarrollo del proyecto, buscando siempre la mejor manera de hacer que el sistema sea fácil de usar y satisfaga las necesidades de la pupusería. Con el apoyo y la colaboración de todos, Astrosoftware está seguro de que logrará cumplir con éxito el proyecto y satisfacer las expectativas del cliente.</p>
-      </div>
-      <div class="col-md-6">
-        <img src="https://via.placeholder.com/500x500.png?text=Equipo+Astrosoftware" class="img-fluid" alt="Equipo Astrosoftware">
-      </div>
+<section class="about-us">
+  <div class="container">
+    <h2 class="section-title">Sobre nosotros</h2>
+    <div class="about-content">
+      <p class="about-text">Bienvenidos a nuestra tienda en línea de pupusas. Somos una empresa familiar que se enorgullece de compartir con ustedes el sabor auténtico de las pupusas salvadoreñas.</p>
+      <p class="about-text">Nuestra pasión por la comida nos ha llevado a crear una tienda en línea donde puedas encontrar una gran variedad de pupusas, desde las tradicionales de queso y chicharrón hasta opciones más innovadoras como la pupusa de pollo y espinacas.</p>
+      <p class="about-text">Además, ofrecemos promociones especiales para que puedas disfrutar de nuestras deliciosas pupusas a precios aún más accesibles. Creemos que la buena comida no tiene que ser costosa y trabajamos arduamente para asegurarnos de que siempre puedas disfrutar de un platillo lleno de sabor a un precio justo.</p>
+      <p class="about-text">Nuestro compromiso con la calidad es fundamental en todo lo que hacemos. Utilizamos ingredientes frescos y de alta calidad para nuestras pupusas y nos aseguramos de que cada orden sea preparada con el cuidado y la atención que merece.</p>
+      <p class="about-text">Estamos encantados de poder llevar un pedacito de El Salvador a tu hogar y esperamos que disfrutes nuestras pupusas tanto como nosotros disfrutamos prepararlas. ¡Gracias por confiar en nosotros y por apoyar a los negocios locales!</p>
     </div>
   </div>
+</section>
+
+
 </body>
 <!-- FIN CONTENIDO -->
 

@@ -9,7 +9,7 @@
     <div class="container pt-2">
 
     <div class="row">
-        <h1 class="text-center">Listado de productos</h1>
+        <h1 class="text-center mt-3">Listado de productos</h1>
 
         <form method="GET" action="<?php echo URL . 'Food/'; ?>" class="mb-4 form-inline col">
             <div class="form-group d-flex">
@@ -29,9 +29,8 @@
     <?php if(isset($_SESSION["user"])) { ?>
     <!-- código para agregar al carrito -->
     <?php } else { ?>
-        <div class="alert alert-info" role="alert">
-            Debes iniciar sesión para agregar productos al carrito.
-            <a class="btn btn-primary ml-2" href="<?php echo URL . 'Home/Login'; ?>">Iniciar sesión</a>
+        <div class="text-center alert alert-info" role="alert">
+             <h5>Debes iniciar sesión para agregar productos al carrito.</h5>
         </div>
     <?php } ?>
 
