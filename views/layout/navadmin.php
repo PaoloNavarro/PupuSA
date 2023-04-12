@@ -13,10 +13,10 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body justify-content-between">
-                <ul class="navbar-nav align-middle">
-                    <li class="nav-item"><a class="nav-link"  href="<?= URL ?>Admin">Inicio Admin</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Pedidos">Pedidos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Register">Usuarios</a></li>
+                <ul class="navbar-nav align-middle">   
+                    
+                    <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Register">Registrar</a></li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="promocionesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Promociones
@@ -27,6 +27,7 @@
                             <li><a class="dropdown-item" href="<?= URL ?>Admin/PromocionesE">Editar promoción</a></li>
                         </ul>
                     </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Productos
