@@ -45,8 +45,19 @@ class CarritoController extends Controller{
         // Actualizar el carrito en la sesión
         $_SESSION['carrito'] = $carrito;
         
+        if(isset($_SESSION['productovista']) && $_SESSION['productovista'] == 'promociones') {
+          // hacer algo si la variable existe y su valor es "promociones"
+          header('Location: ' . URL . 'Home/promociones');
+        } elseif(isset($_SESSION['productovista']) && $_SESSION['productovista'] == 'normal') {
+          // hacer algo si la variable existe y su valor es "normal"
+          header('Location: ' . URL . 'Food');
+        } else {
+          // hacer algo si la variable no existe o no tiene un valor válido
+          var_dump($_SESSION['productovista']);
+          //header('Location: ' . URL . 'Error');
+        }
         // Redirigir al listado de productos
-        header('Location: ' . URL . 'Food');
+       
         //var_dump($_SESSION['carrito']);
         exit();
       }

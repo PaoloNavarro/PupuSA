@@ -8,6 +8,7 @@ class ErrorController extends Controller
 
     public function Index()
     {
-        echo "Error, direccion invalida";
+        $this->RenderView("Error/Index");
+
     }
 }
