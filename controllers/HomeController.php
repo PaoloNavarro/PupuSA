@@ -1,4 +1,6 @@
 <?php
+require_once 'models/producto.php';
+require_once 'models/categoria.php';
 
 class HomeController extends Controller
 {
@@ -11,7 +13,13 @@ class HomeController extends Controller
     public function Index()
     {
 
-        $this->RenderView("Home/Index");
+        $productos = Producto::listarProductosByIdCategoria("5");
+
+        $data = [
+            'productos' => $productos
+        ];
+
+        $this->RenderView("Home/Index",$data);
     }
 
     public function Nosotros()
@@ -27,7 +35,23 @@ class HomeController extends Controller
     {
         $this->RenderView("Layout/Registro");
     }
+
+    public function Promociones()
+    {
+        $productos = Producto::listarProductosByIdCategoria("5");
+
+        $data = [
+            'productos' => $productos
+        ];
+
+        $_SESSION['productovista'] = "promociones";
+
+        $this->RenderView("home/promociones",$data);
+    }
+
     
+    
+    //Checar al final si realmente se utiliza carrito
     public function Carrito()
     {
         

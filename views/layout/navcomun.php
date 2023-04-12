@@ -23,7 +23,8 @@
                         </li>
                         <li class="nav-item">
                         <a class="nav-link"  href="<?=URL?>Home/Nosotros">Nosotros</a>
-
+                        </li>
+                        <a class="nav-link"  href="<?=URL?>Home/promociones">Promociones</a>
                         </li>
                     </ul>
                     <?php require_once VIEW_LAYOUT_PATH . 'iniciada.php' ?>

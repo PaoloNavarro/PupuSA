@@ -8,37 +8,22 @@
 
     <div class="container pt-2">
 
-    <div class="row">
-        <h1 class="text-center mt-3">Listado de productos</h1>
 
-        <form method="GET" action="<?php echo URL . 'Food/'; ?>" class="mb-4 form-inline col">
-            <div class="form-group d-flex">
-                <label for="categoria" class="sr-only">Categoría:</label>
-                <select name="categoria" class="form-control">
-                    <option value="">Todas las categorías</option>
-                    <?php foreach ($viewData['categorias'] as $categoria) { ?>
-                        <option value="<?php echo $categoria->getIdCategoria(); ?>"><?php echo $categoria->getDescripcion(); ?></option>
-                    <?php } ?>
-                </select>
-                <button type="submit" class="btn btn-primary ms-2 ml-2 ml-auto">Filtrar</button>
-            </div>
-        </form>
-    </div>
-
-
-    <?php if(!isset($_SESSION["user"])) { ?>
+    <?php if(isset($_SESSION["user"])) { ?>
     <!-- código para agregar al carrito -->
-    <div class="text-center alert alert-info" role="alert">
-             <h5>Debes iniciar sesión para agregar productos al carrito.</h5>
+    <?php } else { ?>
+        <div class="text-center alert alert-info" role="alert">
+             <h5>Debes iniciar sesión para agregar las promociones.</h5>
         </div>
-    <?php }?>
+    <?php } ?>
 
 
 
 
 
 
-        <div class="container pt-2">
+
+        <div class="container pt-2 mt-3">
 
             <div class="products">
                 

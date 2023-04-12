@@ -31,6 +31,8 @@ class FoodController extends Controller
             'categorias' => $categorias
         ];
 
+        $_SESSION['productovista'] = "normal";
+
         $this->RenderView("Food/Index", $data);
     }
 
