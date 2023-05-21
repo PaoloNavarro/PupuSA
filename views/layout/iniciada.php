@@ -38,22 +38,21 @@
 
                                 </li>
                                 
-                                <!-- carrito lg -->
-                                <li class="d-none d-lg-block">
-                                    <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
+                               
+
+
+                            <?php if(isset($_SESSION["user_type"]) && $_SESSION["user_type"] == "admin"){ ?>
+                                <li class="nav-item"><a class="nav-link" href="<?= URL ?>Admin/Pedidos">Pedidos</a></li>          
+                               
+                            <?php } else { ?>
+                                <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
                                         <i class="fa-solid fa-cart-shopping"></i> Carrito
                                         <?php if (isset($_SESSION['carrito'])): ?>
                                          <span class="badge bg-danger"><?= count($_SESSION['carrito']) ?></span>
                                         <?php endif; ?>
-                                    </a>
-                                </li>
-                                <!-- carrito sm -->
-                                <li class="d-lg-none">
-                                    <a class="nav-link" href="<?= URL ?>Carrito/VerCarrito">
-                                        Carrito
-                                    </a>
-                                </li>
-                            </ul>
+                                </a>
+                                
+                            <?php } ?>
                             
 <?php else: //Si no hay sesión iniciada ?>
                         <ul class="navbar-nav align-middle">
