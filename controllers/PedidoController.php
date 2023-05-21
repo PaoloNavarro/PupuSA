@@ -121,7 +121,6 @@
                     $pedido->setIdEstadoPedido($_POST['id_estado_pedido']);
                     $pedido->setUbicacion($_POST['ubicacion']);
                     $pedido->guardar();
-                    echo("guarde pedido"); // Guardar el Pedido en la base de datos
             
                     // Crear los detalles de pedido para cada producto en el carrito
                     foreach ($carrito as $item) {

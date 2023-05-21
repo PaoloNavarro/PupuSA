@@ -44,11 +44,15 @@ class Categoria {
     // método para agregar una nueva categoría
     public static function agregarCategoria($descripcion, $estado) {
         try {
+            //abrimos conexion
             $con = Conexion::getConection();
+            //creamos la setenctencia
             $sql = "INSERT INTO categoria (descripcion, estado) VALUES (:descripcion, :estado)";
             $stmt = $con->prepare($sql);
+            //cramos nuestro stm y pasamos sus variables
             $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
             $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+            //ejectutamos 
             $stmt->execute();
             $stmt = null;
             $con = null;
@@ -110,6 +114,7 @@ class Categoria {
             $sql = "SELECT id_categoria, descripcion, estado FROM categoria";
             $stmt = $con->prepare($sql);
             $stmt->execute();
+            
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $categoria = new Categoria($row['id_categoria'], $row['descripcion'], $row['estado']);
                 $categorias[] = $categoria;

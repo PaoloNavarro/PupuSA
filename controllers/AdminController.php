@@ -259,8 +259,7 @@ class AdminController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $descripcion = $_POST['descripcion'];
             $estado = $_POST['estado'];
-            var_dump($descripcion);
-            var_dump($estado);
+            
             Categoria::agregarCategoria($descripcion, $estado);
            
 

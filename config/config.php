@@ -31,6 +31,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.
 
         // Y utiliza la URL de tu sitio web en lugar de 'http://localhost/pupuSA/'
     define('URL', 'https://pupusa-restaurant.000webhostapp.com/');
+    
     //varibale db
     define('dbname',"id20259048_pupusa");
     define('user',"id20259048_root");

@@ -124,6 +124,7 @@ class DetallePedido {
             // Preparar la consulta SQL
             $query = "INSERT INTO detalle_pedido (id_producto, id_pedido, cantidad) 
             VALUES (?, ?, ?)";
+            
             $stmt = $con->prepare($query);
     
             // Asignar los valores a los parámetros de la consulta
@@ -156,6 +157,7 @@ class DetallePedido {
                                 FROM detalle_pedido dp 
                                 JOIN producto p ON dp.id_producto = p.id_producto 
                                 WHERE dp.id_pedido = :id_pedido");
+        
         $query->execute(['id_pedido' => $idPedido]);
 
         $detallesPedido = [];
