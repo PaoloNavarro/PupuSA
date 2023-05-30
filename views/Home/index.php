@@ -53,7 +53,10 @@
 <!-- INSERTAR CONTENIDO -->
 <body>
 
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+
+  <div class="row">
+    <div class="col-md-12">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -61,23 +64,23 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="public/img/slide3.jpeg" class="d-block w-100" alt="..." style="width: 250px; height: 450px;">
+      <img src="public/img/slide3.jpeg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5 class="fw-bold fs-1 ">Las mejores pupusas de Santa Ana</h5>
-        <p>Visitanos en nuestro restaurante PupuSA</p>
+        <h5 class="fw-bold fs-1">Las mejores pupusas de Santa Ana</h5>
+        <p>Visítanos en nuestro restaurante PupuSA</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="public/img/slide3.jpg" class="d-block w-100" alt="..." style="width: 250px; height: 450px;">
+      <img src="public/img/slide3.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5 class="fw-bold fs-1 ">Pupusas de Calidad</h5>
-        <p>Somos lo mejores en hacer pupusas</p>
+        <h5 class="fw-bold fs-1">Pupusas de Calidad</h5>
+        <p>Somos los mejores en hacer pupusas</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="public/img/slide4.jpg" class="d-block w-100" alt="..." style="width: 250px; height: 450px;">
+      <img src="public/img/slide4.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5 class="fw-bold fs-1 ">Llevate un experiencia inolvidable</h5>
+        <h5 class="fw-bold fs-1">Llévate una experiencia inolvidable</h5>
         <p>Siente la calidad</p>
       </div>
     </div>
@@ -91,6 +94,11 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+  </div>
+</div>
+
+
+
     
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
@@ -135,17 +143,22 @@
 </div>
 
 
-    <div class="container mt-5 ">
-    <h1 class="titulo-promociones  mb-4">Mejores Promociones</h1>
-        <div class="row">
-            <div class="col text-center mb-4">
-            <img src="public/img/pu1.jpg" class="rounded" data-aos="zoom-in" alt="...">
-            </div>
-            <div class="col text-center">
-            <img src="public/img/pu2.jpg" class="rounded" data-aos="zoom-in" alt="...">
-            </div>
-        </div>
+<div class="container mt-5">
+  <h1 class="titulo-promociones mb-4">Mejores Promociones</h1>
+  <div class="row">
+    <div class="col-md-6 col-lg-4 text-center mb-4">
+      <img src="public/img/pu1.jpg" class="rounded img-fluid" data-aos="zoom-in" alt="...">
     </div>
+    <div class="col-md-6 col-lg-4 text-center mb-4">
+      <img src="public/img/pu2.jpg" class="rounded img-fluid" data-aos="zoom-in" alt="...">
+    </div>
+    <div class="col-md-6 col-lg-4 text-center mb-4">
+      <img src="public/img/pu1.jpg" class="rounded img-fluid" data-aos="zoom-in" alt="...">
+    </div>
+  </div>
+</div>
+
+
 
 
     <div class="container">
@@ -190,27 +203,38 @@
     </div>
   </div>
 
-    <h1 class="titulo-promociones  mb-4">Aqui Encontrarás</h1>
-    <div class="image-container" style="background-color: #C6C0BF;">    
-    <div class="m-5">
-    <p>Pupusas</p>
-      <img src="public/img/pu3.jpg" alt="Imagen 1">
-      
-    </div>
-    <div class="m-5">
-    <p>refrescos</p>
-      <img src="public/img/ref1.jpg" alt="Imagen 2">
-    </div>
-    <div class="m-5">
-    <p>promociones</p>
-      <img src="public/img/prom1.jpg" alt="Imagen 3">
-    </div>
 
-    <div class="m-5">
-    <p>Postres</p>
-      <img src="public/img/postre1.jpg" alt="Imagen 3">
+
+
+<div class="container">
+  <h1 class="titulo-promociones mb-4">Aqui Encontrarás</h1>
+  <div class="row">
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="image-container" >
+        <p>Pupusas</p>
+        <img src="public/img/pu3.jpg" alt="Imagen 1" class="img-fluid">
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="image-container" >
+        <p>Refrescos</p>
+        <img src="public/img/ref1.jpg" alt="Imagen 2" class="img-fluid">
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="image-container" >
+        <p>Promociones</p>
+        <img src="public/img/prom1.jpg" alt="Imagen 3" class="img-fluid">
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="image-container" >
+        <p>Postres</p>
+        <img src="public/img/postre1.jpg" alt="Imagen 4" class="img-fluid">
+      </div>
     </div>
   </div>
+</div>
 
 
     
