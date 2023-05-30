@@ -13,6 +13,14 @@
 .container img {
   margin-right: 10px;
 }
+
+.navbar-brand{
+    background-image: linear-gradient(to right, #F2921D, #A61F69);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 2.9rem;
+}
 </style>
 <!-- INSERTAR CONTENIDO -->
 <body>
@@ -20,8 +28,8 @@
 
 
   <div class="container df">
-  <h2 class="section-title">Sobre nosotros</h2>
-    <img src="../public/img/logotipo.png" alt="Descripción de la imagen" style="widht:" class="mb-4" data-aos="fade-up">
+  <h1 class="navbar-brand mb-4" data-aos="fade-up">Sobre nosotros</h1>
+    
   </div>
   <div class="container">
     
