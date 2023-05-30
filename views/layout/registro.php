@@ -5,7 +5,7 @@
 
 <body>
     <section>
-      <div class="form-box">
+      <div class="form-box mt-4">
         <!-- Formulario de registro de usuario -->
         <form id="register-form" class="form" action="<?php echo URL . 'Registro/register' ?>" method="post" >
           

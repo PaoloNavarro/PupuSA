@@ -47,6 +47,28 @@
                             <li><a class="dropdown-item" href="<?= URL ?>Admin/Ecategoria">Editar categoria</a></li>
                         </ul>
                     </li>
+
+                    <li>
+                                <ul class="navbar-nav align-middle">
+                                    <li class="nav-item dropdown d-block d-lg-none">
+                                        <a class="nav-link dropdown-toggle" href="#" id="mobileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-regular fa-user"></i> <span></span> Usuario
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="mobileDropdown">
+                                            <a class="dropdown-item" href="<?php echo URL; ?>Usuario/perfil">
+                                                <i class="fas fa-user"></i> Mi perfil
+                                            </a>
+                                            <a class="dropdown-item" href="<?php echo URL; ?>Usuario/pedido ">
+                                                <i class="fas fa-clipboard-list"></i> Mis pedidos
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="<?php echo URL; ?>Auth/logout">
+                                                <i class="fa-solid fa-sign-out"></i> Cerrar sesión
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
                 </ul>
                 <?php require_once VIEW_LAYOUT_PATH . 'iniciada.php' ?>
             </div>
