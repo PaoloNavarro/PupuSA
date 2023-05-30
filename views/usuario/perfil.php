@@ -4,7 +4,7 @@
     <div class="text-center">
         <h1>Mi perfil</h1>
         <hr>
-        <img src="public/img/pu1.jpg" class="rounded-circle img-fluid profile-image" data-aos="zoom-in" alt="Perfil de usuario">
+        <img src="../public/img/slide3.jpg" class="d-block w-100" alt="...">
     </div>
 
     <div class="row mt-4">

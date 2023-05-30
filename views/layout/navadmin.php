@@ -22,9 +22,9 @@
                             Promociones
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="promocionesDropdown">
-                            <li><a class="dropdown-item" href="<?= URL ?>Admin/PromocionesA">Ver promociones</a></li>
+                            
                             <li><a class="dropdown-item" href="<?= URL ?>Admin/PromocionesA">Agregar promoción</a></li>
-                            <li><a class="dropdown-item" href="<?= URL ?>Admin/PromocionesE">Editar promoción</a></li>
+                            
                         </ul>
                     </li>
                     
