@@ -32,9 +32,12 @@
 
     .titulo-promociones {
       text-align: center;
-      font-size: 32px;
       font-weight: bold;
       margin-top: 50px;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: #c43f3f;
       
     }
 

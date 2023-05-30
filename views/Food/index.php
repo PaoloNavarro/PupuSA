@@ -9,7 +9,7 @@
     <div class="container pt-2">
 
     <div class="row">
-        <h1 class="text-center mt-3">Listado de productos</h1>
+        <h1 class="text-center mt-3" style="color: #c43f3f;">Listado de productos</h1>
 
         <form method="GET" action="<?php echo URL . 'Food/'; ?>" class="mb-4 form-inline col">
             <div class="form-group d-flex">
