@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2023 a las 08:02:45
+-- Tiempo de generación: 30-05-2023 a las 22:18:06
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -151,7 +151,11 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `image_url`, `descrip
 (2, 'Frijol con queso', 0.65, 'http://localhost/pupuSA/uploads/64758c59017028.77452456.jpeg', 'Riquísima pupusa de frijol con queso', 1, 1),
 (10, 'Revueltas', 0.5, 'http://localhost/pupuSA/uploads/64758c6b468e18.75629892.jpeg', 'Lo mejor de las pupusas revueltas', 1, 1),
 (11, 'Camaron', 1.25, 'http://localhost/pupuSA/uploads/64758d708fa377.38488034.jpg', 'Pruébalas ya, riquísimas pupusas de camarón ', 2, 1),
-(12, 'Loca', 1.85, 'http://localhost/pupuSA/uploads/64758d9eeec651.56838752.jpg', 'Deléitate con nuestra pupusa loca ', 3, 1);
+(12, 'Loca', 1.85, 'http://localhost/pupuSA/uploads/64758d9eeec651.56838752.jpg', 'Deléitate con nuestra pupusa loca ', 3, 1),
+(13, 'Hola', 9, 'http://localhost/pupuSA/uploads/647598606d8ec3.59742356.png', 'assss', 5, 2),
+(14, 'Combo Familiar', 16.99, 'http://localhost/pupuSA/uploads/647657037942c1.74333717.png', '12 pupusas de arroz o maiz frijo c/queso o revueltas + bebida', 5, 1),
+(15, 'Para compartir', 14.99, 'http://localhost/pupuSA/uploads/647658ea9bff75.23082381.jpg', 'Disfrutar con amigos que incluye 12 pupusas, una jarra de horchata + empanadas', 5, 1),
+(16, 'Pupu-Cola', 12.99, 'http://localhost/pupuSA/uploads/647659008e86d9.09179322.png', '¿Tienes sed de Coca-Cola? Disfruta de este combo.', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -298,7 +302,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
