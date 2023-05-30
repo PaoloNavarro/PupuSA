@@ -1,15 +1,31 @@
 <?php require_once VIEW_LAYOUT_PATH . 'header.php'; ?>
 
+
+<style>
+.navbar-brand{
+    background-image: linear-gradient(to right, #F2921D, #A61F69);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 2.9rem;
+}
+</style>
+
 <div class="container my-4 mx-auto">
     <div class="text-center">
-        <h1>Mi perfil</h1>
+        <h1 class="navbar-brand">Mi perfil</h1>
         <hr>
-        <img src="public/img/pu1.jpg" class="rounded-circle img-fluid profile-image" data-aos="zoom-in" alt="Perfil de usuario">
+        <div style="display: flex; justify-content: center;">
+            <img src="../public/img/perfil.png" class="d-block" alt="..." width="100" height="100">
+        </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-md-6 col-sm-12 mx-auto">
+        <div style="display: flex; justify-content: center;">
             <h3>Información personal</h3>
+        </div>
+            
             <table class="table table-striped">
                 <tr>
                     <th>Nombre:</th>
