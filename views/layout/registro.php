@@ -1,5 +1,5 @@
 <?php require_once VIEW_LAYOUT_PATH . 'header.php' ?>
-<link rel="stylesheet" href="<?= URL . "public/css/registro.css" ?>">
+<link rel="stylesheet" href="<?= URL . "public/css/registroUsuario.css" ?>">
 
 
 
@@ -10,7 +10,7 @@
         <form id="register-form" class="form" action="<?php echo URL . 'Registro/register' ?>" method="post" >
           
           <!-- Titulo  -->
-          <h2>Registro de usuario</h2>
+          
           <?php if (isset($_SESSION["mensaje"]) && isset($_SESSION["mensaje_tipo"])): ?>
               <div class="alert <?php echo $_SESSION["mensaje_tipo"]; ?> mt-3 mb-0">
                   <?php echo $_SESSION["mensaje"]; ?>
@@ -19,6 +19,7 @@
           <?php endif; ?>
           
            <div class="row">
+              <h2>Registro de usuario</h2>
                <!-- Nombre -->
             <div class="inputbox">
               <i class="fa-regular fa-user"></i>
