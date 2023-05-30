@@ -99,9 +99,8 @@
           
 
             
-
-            <div class="form-group">
-            <input class="btn btn-primary" type="submit" name="submit"  id="bton" value="Registrarse">
+            <div class="form-group text-center" style="padding: 20px;">
+              <input class="btn btn-primary" type="submit" name="submit"  id="bton" value="Registrarse">
             </div>
           </form>
     </section>

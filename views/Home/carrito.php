@@ -74,7 +74,7 @@
                                         </label>
                                     </div>
                                     <div class="my-3">
-                                        <input type="radio" name="pago" value="efectivo" id="pago-efectivo" class="mr-2">
+                                        <input type="radio" name="pago" value="efectivo" id="pago-efectivo" class="mr-2" checked>
                                         <label for="pago-efectivo" class="font-weight-bold">
                                             <i class="fas fa-money-bill-wave fa-lg"></i> Efectivo
                                         </label>

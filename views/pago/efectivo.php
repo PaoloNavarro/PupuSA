@@ -47,7 +47,9 @@
                         </table>
                     </div>
                 </div>
-                <div class="flex-fill">
+                
+        </div>
+        <div class="flex-fill col-md-6 mt-4 ">
                         <h2>Ingrese la dirección de envío</h2>
                         <div class="mb-3">
                             <label for="direccion_envio" class="form-label">Dirección de envío:</label>
@@ -56,7 +58,6 @@
                         <button class="btn btn-success" type="submit" require>Procesar pago en efectivo</button>
                         <input type="hidden" name="id_estado_pedido" value="1">
                 
-                </div>
         </div>
     </form>
 
